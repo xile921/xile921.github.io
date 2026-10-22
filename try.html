@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#1f2937">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TF排班">
+<title>TF排班与出勤</title>
+<link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgcng9IjIyIiBmaWxsPSIjMWYyOTM3Ii8+PHBhdGggZD0iTTQyIDIySDQyVjQySDIyVjU4SDQyVjc4SDQyVjU4SDYyVjQySDQyVjIyWiIgZmlsbD0iI2Y5ZmFmYiIvPjwvc3ZnPg==">
+<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgcng9IjIyIiBmaWxsPSIjMWYyOTM3Ii8+PHBhdGggZD0iTTQyIDIySDQyVjQySDIyVjU4SDQyVjc4SDQyVjU4SDYyVjQySDQyVjIyWiIgZmlsbD0iI2Y5ZmFmYiIvPjwvc3ZnPg==">
+<style>
+:root{
+  --bg:#f3f4f6; --card:#ffffff; --ink:#111827; --sub:#6b7280; --line:#e5e7eb;
+  --brand:#1f2937; --brand2:#374151; --ok:#059669; --warn:#d97706; --bad:#dc2626;
+  --chip:#eef2ff; --chipInk:#3730a3; --radius:14px;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px;line-height:1.5;overscroll-behavior-y:contain}
+body{padding-bottom:calc(78px + env(safe-area-inset-bottom))}
+.hide{display:none!important}
+.wrap{max-width:560px;margin:0 auto;padding:12px}
+.topbar{position:sticky;top:0;z-index:30;background:rgba(243,244,246,.92);backdrop-filter:blur(10px);
+  padding:10px 12px 8px;border-bottom:1px solid var(--line)}
+.topbar h1{margin:0;font-size:17px;letter-spacing:.3px;display:flex;align-items:center;gap:8px}
+.topbar .sub{color:var(--sub);font-size:12px;margin-top:2px}
+.cross{width:22px;height:22px;display:inline-block;flex:none}
+.card{background:var(--card);border-radius:var(--radius);padding:14px;margin:10px 0;
+  box-shadow:0 1px 2px rgba(0,0,0,.04),0 6px 20px rgba(0,0,0,.04)}
+.card h2{margin:0 0 10px;font-size:15px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.card h3{margin:14px 0 8px;font-size:13.5px;color:var(--brand2)}
+label{display:block;font-size:12.5px;color:var(--sub);margin:8px 0 4px}
+input,select,textarea,button{font:inherit;color:inherit}
+input[type=text],input[type=tel],input[type=date],input[type=number],select,textarea{
+  width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:10px;background:#fbfbfd;outline:none}
+input:focus,select:focus,textarea:focus{border-color:#9ca3af;background:#fff}
+textarea{min-height:64px;resize:vertical}
+.row{display:flex;gap:8px}
+.row>*{flex:1;min-width:0}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:none;border-radius:11px;
+  padding:11px 14px;background:var(--brand);color:#fff;font-weight:600;font-size:14px;cursor:pointer;
+  transition:transform .06s ease,opacity .15s}
+.btn:active{transform:scale(.97)}
+.btn.ghost{background:#fff;color:var(--brand);border:1px solid var(--line)}
+.btn.soft{background:var(--chip);color:var(--chipInk)}
+.btn.ok{background:var(--ok)} .btn.warn{background:var(--warn)} .btn.bad{background:var(--bad)}
+.btn.sm{padding:8px 11px;font-size:12.5px;border-radius:9px}
+.btn.block{width:100%}
+.btn:disabled{opacity:.45;pointer-events:none}
+.hint{font-size:12px;color:var(--sub);margin-top:6px}
+.pill{display:inline-flex;align-items:center;gap:4px;background:var(--chip);color:var(--chipInk);
+  border-radius:999px;padding:3px 9px;font-size:11.5px;font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 12px;font-size:13px;cursor:pointer}
+.chip.on{background:var(--brand);color:#fff;border-color:var(--brand)}
+.chip.on::before{content:"✓ ";font-size:11px}
+.empty{text-align:center;color:var(--sub);padding:22px 8px;font-size:13px}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th,td{padding:8px 6px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{color:var(--sub);font-weight:600;font-size:11.5px;background:#fafafa;position:sticky;top:0}
+tr:last-child td{border-bottom:none}
+.tblwrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+.tag{display:inline-block;border-radius:6px;padding:1px 6px;font-size:11px;font-weight:700}
+.tag.ok{background:#d1fae5;color:#065f46}
+.tag.miss{background:#fee2e2;color:#991b1b}
+.tag.warn{background:#fef3c7;color:#92400e}
+.tag.bad{background:#fecaca;color:#7f1d1d}
+.person-row{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:9px 0;border-bottom:1px solid var(--line)}
+.person-row:last-child{border-bottom:none}
+.person-row .name{font-weight:600}
+.person-row .meta{font-size:11.5px;color:var(--sub)}
+.att-row{display:flex;align-items:center;gap:8px;padding:10px 0;border-bottom:1px solid var(--line)}
+.att-row:last-child{border-bottom:none}
+.att-row .who{flex:1;min-width:0}
+.att-row .who .n{font-weight:600;font-size:13.5px}
+.att-row .who .m{font-size:11.5px;color:var(--sub)}
+.seg{display:flex;background:#eef0f3;border-radius:10px;padding:3px;gap:3px}
+.seg button{flex:1;border:none;background:transparent;border-radius:8px;padding:7px 4px;font-size:12.5px;font-weight:600;color:var(--sub);cursor:pointer}
+.seg button.on{background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.bottomnav{position:fixed;left:0;right:0;bottom:0;z-index:40;display:flex;
+  background:rgba(255,255,255,.94);backdrop-filter:blur(12px);border-top:1px solid var(--line);
+  padding:6px 8px calc(6px + env(safe-area-inset-bottom));gap:6px}
+.bottomnav button{flex:1;border:none;background:transparent;border-radius:12px;padding:7px 4px;
+  display:flex;flex-direction:column;align-items:center;gap:2px;color:var(--sub);font-size:11px;font-weight:600;cursor:pointer}
+.bottomnav button .ic{font-size:18px;line-height:1}
+.bottomnav button.on{color:var(--brand);background:#f1f3f6}
+.modal-mask{position:fixed;inset:0;background:rgba(17,24,39,.45);z-index:60;display:flex;
+  align-items:flex-end;justify-content:center;padding:0;animation:fade .16s ease}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.modal{background:#fff;width:100%;max-width:560px;border-radius:18px 18px 0 0;padding:16px 16px calc(16px + env(safe-area-inset-bottom));
+  max-height:86vh;overflow:auto;animation:up .2s cubic-bezier(.2,.8,.2,1)}
+@keyframes up{from{transform:translateY(24px);opacity:.6}to{transform:translateY(0);opacity:1}}
+.modal h3{margin:0 0 4px;font-size:16px}
+.modal .m-sub{color:var(--sub);font-size:12.5px;margin-bottom:12px}
+.modal .acts{display:flex;gap:8px;margin-top:16px}
+.modal .acts>*{flex:1}
+.toast{position:fixed;left:50%;bottom:calc(90px + env(safe-area-inset-bottom));transform:translateX(-50%);
+  background:rgba(17,24,39,.94);color:#fff;padding:10px 16px;border-radius:12px;font-size:13px;z-index:80;
+  max-width:88vw;text-align:center;animation:fade .15s ease}
+.tabs{display:flex;gap:6px;margin:4px 0 10px}
+.tabs button{flex:1;border:1px solid var(--line);background:#fff;border-radius:10px;padding:9px 4px;font-size:13px;font-weight:600;color:var(--sub);cursor:pointer}
+.tabs button.on{background:var(--brand);color:#fff;border-color:var(--brand)}
+.weekbox{border:1px solid var(--line);border-radius:12px;padding:10px;margin:8px 0;background:#fcfcfd}
+.weekbox .wk{font-weight:700;font-size:13.5px;display:flex;justify-content:space-between;align-items:center}
+.weekbox .wk .r{font-size:11.5px;color:var(--sub);font-weight:500}
+.bar{height:8px;border-radius:6px;background:#eef0f3;overflow:hidden;margin-top:8px}
+.bar>i{display:block;height:100%;border-radius:6px;transition:width .3s}
+.stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:8px}
+.stat{background:#fafafa;border:1px solid var(--line);border-radius:11px;padding:10px}
+.stat .k{font-size:11.5px;color:var(--sub)}
+.stat .v{font-size:19px;font-weight:700;margin-top:1px}
+.fab-note{font-size:11.5px;color:var(--sub);margin:2px 0 0}
+.divider{height:1px;background:var(--line);margin:12px 0}
+.kv{display:flex;justify-content:space-between;gap:10px;padding:5px 0;font-size:13px}
+.kv .k{color:var(--sub)}
+.kv .v{font-weight:600;text-align:right;word-break:break-all}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <h1>
+    <svg class="cross" viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" rx="22" fill="#1f2937"/><path d="M42 22h16v20h20v16H58v20H42V58H22V42h20V22z" fill="#f9fafb"/></svg>
+    <span>TF 排班与出勤</span>
+  </h1>
+  <div class="sub" id="topSub">本地存储 · 仅此手机</div>
+</div>
+
+<div class="wrap">
+  <!-- ============ 入口：排班 ============ -->
+  <section id="viewPlan">
+    <div id="planEmpty" class="card">
+      <h2>预约排班 <span class="pill">第 1 步</span></h2>
+      <p class="hint" style="margin-top:0">先添加参与人，再设置学期区间与可预约时段，最后生成排班。</p>
+      <button class="btn block" onclick="openPersonForm()">＋ 添加参与人</button>
+      <div id="personList" style="margin-top:12px"></div>
+      <div class="divider"></div>
+      <button class="btn ghost block" onclick="openTermForm()">设置学期区间与可预约时段</button>
+      <div id="termSummary" style="margin-top:10px"></div>
+      <div class="divider"></div>
+      <button class="btn ok block" onclick="generatePlan()">生成排班</button>
+      <p class="hint">生成规则：按可预约时段与期望次数尽量均摊到每周，避免同一天堆叠同一个人。</p>
+    </div>
+
+    <div id="planResult" class="hide">
+      <div class="card">
+        <h2>排班表 <span class="pill" id="planMeta"></span></h2>
+        <div class="row" style="margin-bottom:8px">
+          <button class="btn soft sm" onclick="backToPlanEdit()">修改设置</button>
+          <button class="btn soft sm" onclick="regeneratePlan()">重新排列</button>
+        </div>
+        <div class="tblwrap"><table id="planTable"></table></div>
+        <div class="row" style="margin-top:12px">
+          <button class="btn ghost sm" onclick="savePlanImage('week')">保存本周图片</button>
+          <button class="btn ghost sm" onclick="savePlanImage('month')">保存本月图片</button>
+          <button class="btn ghost sm" onclick="savePlanImage('all')">保存整学期图片</button>
+        </div>
+        <p class="hint">点击表格中的场次可标记「已完成 / 未完成 / 失效」。未完成或失效会询问是否重排。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 入口：出勤 ============ -->
+  <section id="viewAtt" class="hide">
+    <div class="card">
+      <h2>出勤记录 <span class="pill" id="attTermPill">未设置学期</span></h2>
+      <p class="hint" style="margin-top:0">与排班使用同一批人员数据。按周记录出勤，未出勤率 ≥50% 标注注意，≥80% 标注严重。</p>
+      <div class="tabs" id="attTabs">
+        <button class="on" data-tab="week" onclick="switchAttTab('week')">周</button>
+        <button data-tab="month" onclick="switchAttTab('month')">月</button>
+        <button data-tab="term" onclick="switchAttTab('term')">学期</button>
+      </div>
+      <div id="attBody"></div>
+    </div>
+  </section>
+
+  <!-- ============ 入口：数据 ============ -->
+  <section id="viewData" class="hide">
+    <div class="card">
+      <h2>数据与备份</h2>
+      <p class="hint" style="margin-top:0">数据默认保存在本机浏览器。建议定期复制备份码另存。</p>
+      <div class="row">
+        <button class="btn block" onclick="exportCode()">生成备份码</button>
+        <button class="btn ghost block" onclick="openImport()">粘贴备份码恢复</button>
+      </div>
+      <div id="codeOut" class="hide" style="margin-top:12px">
+        <label>备份码（长按全选复制）</label>
+        <textarea id="codeText" readonly style="min-height:110px;font-family:ui-monospace,Menlo,monospace;font-size:11.5px"></textarea>
+        <div class="row" style="margin-top:8px">
+          <button class="btn soft sm" onclick="copyCode()">复制</button>
+          <button class="btn ghost sm" onclick="document.getElementById('codeOut').classList.add('hide')">收起</button>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <h3 style="margin-top:0">添加到主屏幕</h3>
+      <p class="hint" style="margin-top:0">iOS 用 Safari 打开本页 → 分享 → 添加到主屏幕；Android 用 Chrome → 菜单 → 添加到主屏幕 / 安装应用。图标为十字架。</p>
+      <button class="btn ghost block" onclick="installTip()">查看安装指引</button>
+      <div class="divider"></div>
+      <button class="btn bad block" onclick="clearAll()">清空本机全部数据</button>
+      <p class="hint">清空前请先导出备份码。此操作不可撤销。</p>
+    </div>
+  </section>
+</div>
+
+<nav class="bottomnav">
+  <button class="on" id="navPlan" onclick="switchView('plan')"><span class="ic">📅</span>排班</button>
+  <button id="navAtt" onclick="switchView('att')"><span class="ic">✅</span>出勤</button>
+  <button id="navData" onclick="switchView('data')"><span class="ic">💾</span>数据</button>
+</nav>
+
+<div id="modalRoot"></div>
+<div id="toastRoot"></div>
+
+<script>
+/* =========================================================
+   数据层：单一 state，localStorage 持久化
+   ========================================================= */
+const LS_KEY = 'tf_sched_att_v1';
+const WEEK_CN = ['周日','周一','周二','周三','周四','周五','周六'];
+const PERIODS = [
+  {k:'all',  label:'全天', rank:0},
+  {k:'am',   label:'上午', rank:1},
+  {k:'pm',   label:'下午', rank:2},
+  {k:'eve',  label:'晚上', rank:3},
+];
+const PERIOD_LABEL = Object.fromEntries(PERIODS.map(p=>[p.k,p.label]));
+
+function emptyState(){
+  return {
+    version:1,
+    people:[],          // {id,name,tel,school,grade,cls,room,note,active}
+    term:null,          // {start,end,expect,days:{0..6:[periodKeys]}}
+    plan:[],            // {id,date,period,personId,status:'todo'|'done'|'miss'|'void'}
+    attendance:{},      // key: `${termStart}_${weekIndex}_${personId}` -> true
+    attTerm:null,       // {start,end}
+    meta:{updatedAt:0}
+  };
+}
+let state = load();
+function load(){
+  try{
+    const raw = localStorage.getItem(LS_KEY);
+    if(!raw) return emptyState();
+    const s = JSON.parse(raw);
+    return Object.assign(emptyState(), s);
+  }catch(e){ return emptyState(); }
+}
+function save(){
+  state.meta.updatedAt = Date.now();
+  try{ localStorage.setItem(LS_KEY, JSON.stringify(state)); }
+  catch(e){ toast('保存失败：存储空间可能已满'); }
+}
+async function requestPersist(){
+  try{
+    if(navigator.storage && navigator.storage.persist){
+      const ok = await navigator.storage.persist();
+      if(ok) console.log('storage persisted');
+    }
+  }catch(e){}
+}
+requestPersist();
+
+/* =========================================================
+   工具函数
+   ========================================================= */
+const $ = sel => document.querySelector(sel);
+function uid(){ return Math.random().toString(36).slice(2,9) + Date.now().toString(36).slice(-3); }
+function pad(n){ return String(n).padStart(2,'0'); }
+function fmtDate(d){ return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate()); }
+function parseDate(s){ const [y,m,d] = s.split('-').map(Number); return new Date(y,m-1,d); }
+function addDays(d,n){ const x = new Date(d); x.setDate(x.getDate()+n); return x; }
+function dayDiff(a,b){ // b - a 的天数
+  const A = new Date(a.getFullYear(),a.getMonth(),a.getDate());
+  const B = new Date(b.getFullYear(),b.getMonth(),b.getDate());
+  return Math.round((B-A)/86400000);
+}
+function startOfWeek(d){ // 以周一为一周开始
+  const x = new Date(d.getFullYear(),d.getMonth(),d.getDate());
+  const w = (x.getDay()+6)%7; // 周一=0
+  return addDays(x,-w);
+}
+function mondayIndex(dateStr){ return (parseDate(dateStr).getDay()+6)%7; } // 周一=0...周日=6
+function weekIndexInTerm(dateStr, termStart){
+  const s = startOfWeek(parseDate(termStart));
+  const d = startOfWeek(parseDate(dateStr));
+  return Math.floor(dayDiff(s,d)/7);
+}
+function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function toast(msg, ms=2000){
+  const t = document.createElement('div');
+  t.className = 'toast'; t.textContent = msg;
+  $('#toastRoot').appendChild(t);
+  setTimeout(()=>{ t.style.opacity='0'; t.style.transition='opacity .3s'; setTimeout(()=>t.remove(),320); }, ms);
+}
+function confirmModal(title, sub, okText='确定', cancelText='取消'){
+  return new Promise(resolve=>{
+    const mask = document.createElement('div');
+    mask.className = 'modal-mask';
+    mask.innerHTML = `<div class="modal">
+      <h3>${esc(title)}</h3>
+      ${sub?`<div class="m-sub">${sub}</div>`:''}
+      <div class="acts">
+        <button class="btn ghost" data-act="cancel">${esc(cancelText)}</button>
+        <button class="btn" data-act="ok">${esc(okText)}</button>
+      </div></div>`;
+    mask.addEventListener('click', e=>{
+      const act = e.target.closest('[data-act]');
+      if(!act) return;
+      mask.remove();
+      resolve(act.dataset.act === 'ok');
+    });
+    $('#modalRoot').appendChild(mask);
+  });
+}
+function choiceModal(title, sub, options){ // options: [{label, value, cls}]
+  return new Promise(resolve=>{
+    const mask = document.createElement('div');
+    mask.className = 'modal-mask';
+    mask.innerHTML = `<div class="modal">
+      <h3>${esc(title)}</h3>
+      ${sub?`<div class="m-sub">${sub}</div>`:''}
+      <div style="display:flex;flex-direction:column;gap:8px">
+        ${options.map((o,i)=>`<button class="btn ${o.cls||'ghost'} block" data-i="${i}">${esc(o.label)}</button>`).join('')}
+      </div>
+      <div class="acts"><button class="btn ghost" data-i="-1">取消</button></div>
+    </div>`;
+    mask.addEventListener('click', e=>{
+      const b = e.target.closest('[data-i]');
+      if(!b) return;
+      mask.remove();
+      const i = Number(b.dataset.i);
+      resolve(i>=0 ? options[i].value : null);
+    });
+    $('#modalRoot').appendChild(mask);
+  });
+}
+
+/* =========================================================
+   视图切换
+   ========================================================= */
+function switchView(v){
+  ['plan','att','data'].forEach(k=>{
+    $('#view'+k[0].toUpperCase()+k.slice(1)).classList.toggle('hide', k!==v);
+    $('#nav'+k[0].toUpperCase()+k.slice(1)).classList.toggle('on', k===v);
+  });
+  if(v==='att') renderAtt();
+  if(v==='data') renderTopSub();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function renderTopSub(){
+  const n = state.people.length;
+  const p = state.plan.length;
+  $('#topSub').textContent = `本地存储 · 人员 ${n} · 场次 ${p}`;
+}
+
+/* =========================================================
+   人员管理
+   ========================================================= */
+function renderPeople(){
+  const box = $('#personList');
+  if(!state.people.length){ box.innerHTML = '<div class="empty">还没有参与人</div>'; return; }
+  box.innerHTML = state.people.map(p=>`
+    <div class="person-row">
+      <div>
+        <div class="name">${esc(p.name)} ${p.active===false?'<span class="tag miss">停用</span>':''}</div>
+        <div class="meta">${[p.school,p.grade,p.cls,p.room].filter(Boolean).map(esc).join(' · ')||'未填写学校信息'}${p.tel?' · '+esc(p.tel):''}</div>
+        ${p.note?`<div class="meta" style="color:#92400e">备注：${esc(p.note)}</div>`:''}
+      </div>
+      <div style="display:flex;gap:6px;flex:none">
+        <button class="btn soft sm" onclick="openPersonForm('${p.id}')">编辑</button>
+      </div>
+    </div>`).join('');
+}
+function openPersonForm(id){
+  const p = id ? state.people.find(x=>x.id===id) : null;
+  const mask = document.createElement('div');
+  mask.className = 'modal-mask';
+  mask.innerHTML = `<div class="modal">
+    <h3>${p?'编辑参与人':'添加参与人'}</h3>
+    <div class="m-sub">只有姓名必填，其余可稍后编辑。</div>
+    <label>姓名 *</label><input id="f_name" type="text" value="${p?esc(p.name):''}" placeholder="必填">
+    <label>电话号码</label><input id="f_tel" type="tel" value="${p?esc(p.tel||''):''}" placeholder="选填">
+    <label>学校</label><input id="f_school" type="text" value="${p?esc(p.school||''):''}" placeholder="选填">
+    <div class="row">
+      <div><label>年级</label><input id="f_grade" type="text" value="${p?esc(p.grade||''):''}" placeholder="选填"></div>
+      <div><label>班级</label><input id="f_cls" type="text" value="${p?esc(p.cls||''):''}" placeholder="选填"></div>
+    </div>
+    <label>寝室号</label><input id="f_room" type="text" value="${p?esc(p.room||''):''}" placeholder="选填">
+    <label>备注</label><textarea id="f_note" placeholder="选填，可记录当前情况">${p?esc(p.note||''):''}</textarea>
+    <div class="acts">
+      ${p?`<button class="btn bad" data-act="del">删除</button>`:''}
+      <button class="btn ghost" data-act="cancel">取消</button>
+      <button class="btn" data-act="ok">保存</button>
+    </div>
+  </div>`;
+  mask.addEventListener('click', async e=>{
+    const act = e.target.closest('[data-act]');
+    if(!act) return;
+    if(act.dataset.act==='cancel'){ mask.remove(); return; }
+    if(act.dataset.act==='del'){
+      mask.remove();
+      const ok = await confirmModal('删除该参与人？','其排班与出勤记录也会一并移除。','删除','取消');
+      if(!ok) return;
+      state.people = state.people.filter(x=>x.id!==p.id);
+      state.plan = state.plan.filter(x=>x.personId!==p.id);
+      Object.keys(state.attendance).forEach(k=>{ if(k.endsWith('_'+p.id)) delete state.attendance[k]; });
+      save(); renderPeople(); renderTopSub(); toast('已删除');
+      return;
+    }
+    const name = mask.querySelector('#f_name').value.trim();
+    if(!name){ toast('姓名不能为空'); return; }
+    const data = {
+      name,
+      tel: mask.querySelector('#f_tel').value.trim(),
+      school: mask.querySelector('#f_school').value.trim(),
+      grade: mask.querySelector('#f_grade').value.trim(),
+      cls: mask.querySelector('#f_cls').value.trim(),
+      room: mask.querySelector('#f_room').value.trim(),
+      note: mask.querySelector('#f_note').value.trim(),
+    };
+    if(p){ Object.assign(p, data); }
+    else { state.people.push(Object.assign({id:uid(),active:true}, data)); }
+    save(); mask.remove(); renderPeople(); renderTopSub(); renderTermSummary();
+    toast('已保存');
+  });
+  $('#modalRoot').appendChild(mask);
+  setTimeout(()=>mask.querySelector('#f_name').focus(), 60);
+}
+
+/* =========================================================
+   学期区间与可预约时段
+   ========================================================= */
+function openTermForm(){
+  const t = state.term || {start:'',end:'',expect:1,days:{0:[],1:[],2:[],3:[],4:[],5:[],6:[]}};
+  const days = Object.assign({0:[],1:[],2:[],3:[],4:[],5:[],6:[]}, t.days||{});
+  const mask = document.createElement('div');
+  mask.className = 'modal-mask';
+  mask.innerHTML = `<div class="modal">
+    <h3>学期区间与可预约时段</h3>
+    <div class="m-sub">建议填写一个学期的区间。日期格式固定为 YYYY-MM-DD，也可用日期选择器。</div>
+    <div class="row">
+      <div><label>开始日期</label><input id="t_start" type="date" value="${esc(t.start||'')}"></div>
+      <div><label>结束日期</label><input id="t_end" type="date" value="${esc(t.end||'')}"></div>
+    </div>
+    <label>期望 tf 次数（次/人）</label>
+    <input id="t_expect" type="number" min="1" step="1" value="${t.expect||1}">
+    <div class="hint">指整个学期区间内每人的期望预约总次数，排班时会尽量平均到各周。</div>
+    <h3>每周可预约时段</h3>
+    <div class="hint" style="margin-top:0">至少选择一个。全天与半天同时选中时，按全天优先，不会重复排。</div>
+    ${[1,2,3,4,5,6,0].map(d=>`
+      <div style="margin:8px 0 2px;font-size:12.5px;font-weight:600">${WEEK_CN[d]}</div>
+      <div class="chips" data-day="${d}">
+        ${PERIODS.map(p=>`<button type="button" class="chip ${(days[d]||[]).includes(p.k)?'on':''}" data-p="${p.k}" onclick="this.classList.toggle('on')">${p.label}</button>`).join('')}
+      </div>
+    `).join('')}
+    <div class="acts">
+      <button class="btn ghost" data-act="cancel">取消</button>
+      <button class="btn" data-act="ok">保存设置</button>
+    </div>
+  </div>`;
+  mask.addEventListener('click', async e=>{
+    const act = e.target.closest('[data-act]');
+    if(!act) return;
+    if(act.dataset.act==='cancel'){ mask.remove(); return; }
+    const start = mask.querySelector('#t_start').value;
+    const end = mask.querySelector('#t_end').value;
+    if(!start || !end){ toast('请填写开始和结束日期'); return; }
+    if(start > end){ toast('开始日期不能晚于结束日期'); return; }
+    const expect = parseInt(mask.querySelector('#t_expect').value,10);
+    if(!expect || expect<1){ toast('期望次数需为不小于 1 的整数'); return; }
+    const newDays = {};
+    let any = false;
+    [0,1,2,3,4,5,6].forEach(d=>{
+      const on = [...mask.querySelectorAll(`[data-day="${d}"] .chip.on`)].map(b=>b.dataset.p);
+      newDays[d] = on; if(on.length) any = true;
+    });
+    if(!any){ toast('请至少选择一个可预约时段'); return; }
+    const oldStart = state.term && state.term.start;
+    state.term = {start,end,expect,days:newDays};
+    if(!state.attTerm || state.attTerm.start !== start || state.attTerm.end !== end){
+      state.attTerm = {start,end};
+    }
+    save(); mask.remove(); renderTermSummary(); renderPeople(); renderTopSub();
+    toast('学期设置已保存');
+    if(oldStart && oldStart !== start && state.plan.length){
+      // 区间变了，询问是否清空旧排班重排
+      const ok = await confirmModal('学期区间已变更','已有排班基于旧区间，是否清空并按新设置重新排列？','重新排列','保留旧排班');
+      if(ok){ state.plan = []; generatePlan(); }
+    }
+  });
+  $('#modalRoot').appendChild(mask);
+}
+function renderTermSummary(){
+  const box = $('#termSummary');
+  if(!state.term){ box.innerHTML = '<div class="empty">尚未设置学期区间</div>'; return; }
+  const t = state.term;
+  const dayStr = [1,2,3,4,5,6,0].map(d=>{
+    const on = (t.days[d]||[]).map(k=>PERIOD_LABEL[k]);
+    return on.length ? `${WEEK_CN[d]} ${on.join('/')}` : null;
+  }).filter(Boolean).join('；');
+  box.innerHTML = `
+    <div class="kv"><span class="k">区间</span><span class="v">${esc(t.start)} 至 ${esc(t.end)}</span></div>
+    <div class="kv"><span class="k">期望 tf 次数</span><span class="v">${t.expect} 次/人</span></div>
+    <div class="kv"><span class="k">可预约</span><span class="v" style="font-weight:500;font-size:12px">${esc(dayStr)||'未选择'}</span></div>`;
+}
+
+/* =========================================================
+   排班生成
+   规则：
+   - 枚举区间内所有可用 (日期, 时段)
+   - 每人需要 expect 场，总需求 = 人数 * expect
+   - 按周均摊：轮转分配场次，优先给本周场次少的人
+   - 同一人同一天最多一场；同一天同一时段尽量不重复排同一人
+   ========================================================= */
+function buildSlots(){
+  if(!state.term) return [];
+  const {start,end,days} = state.term;
+  const slots = [];
+  let d = parseDate(start), last = parseDate(end);
+  if(isNaN(d) || isNaN(last)) return [];
+  while(d <= last){
+    const wd = d.getDay();
+    const chosen = days[wd] || [];
+    // 全天优先
+    const list = chosen.includes('all') ? ['all'] : chosen.filter(k=>k!=='all');
+    list.forEach(pk=>{
+      slots.push({date:fmtDate(d), period:pk, wd});
+    });
+    d = addDays(d,1);
+  }
+  return slots;
+}
+function generatePlan(silent){
+  if(!state.term){ toast('请先设置学期区间'); return; }
+  const people = state.people.filter(p=>p.active!==false);
+  if(!people.length){ toast('请先添加参与人'); return; }
+  const slots = buildSlots();
+  if(!slots.length){ toast('当前设置下没有可预约时段'); return; }
+
+  const expect = state.term.expect || 1;
+  const need = people.length * expect;
+  const plan = [];
+  const load = Object.fromEntries(people.map(p=>[p.id,0]));      // 总场次
+  const weekLoad = {}; // weekKey -> {personId:count}
+  const dayUsed = {};  // date -> Set(personId)
+
+  // 为每人建立待分配队列，轮转取人，保证总量均衡
+  let remaining = people.map(p=>({id:p.id,left:expect}));
+  let slotIdx = 0;
+  let guard = 0;
+  while(remaining.some(r=>r.left>0) && slotIdx < slots.length * 3 && guard < 20000){
+    guard++;
+    const slot = slots[slotIdx % slots.length];
+    slotIdx++;
+    const wk = weekIndexInTerm(slot.date, state.term.start);
+    const wkKey = 'w'+wk;
+    if(!weekLoad[wkKey]) weekLoad[wkKey] = {};
+    if(!dayUsed[slot.date]) dayUsed[slot.date] = new Set();
+
+    // 候选：还有剩余、今天未排过、本周负载最低
+    let cands = remaining.filter(r=>r.left>0 && !dayUsed[slot.date].has(r.id));
+    if(!cands.length) continue;
+    const minWeek = Math.min(...cands.map(r=>weekLoad[wkKey][r.id]||0));
+    cands = cands.filter(r=>(weekLoad[wkKey][r.id]||0) === minWeek);
+    // 再按总负载最低
+    const minTotal = Math.min(...cands.map(r=>load[r.id]));
+    cands = cands.filter(r=>load[r.id] === minTotal);
+    // 取第一个（稳定）
+    const pick = cands[0];
+
+    plan.push({id:uid(), date:slot.date, period:slot.period, personId:pick.id, status:'todo'});
+    load[pick.id]++;
+    weekLoad[wkKey][pick.id] = (weekLoad[wkKey][pick.id]||0)+1;
+    dayUsed[slot.date].add(pick.id);
+    pick.left--;
+  }
+
+  // 若还有剩余（时段不够），保留未排完提示
+  const leftover = remaining.reduce((a,r)=>a+r.left,0);
+  state.plan = plan.sort((a,b)=> a.date===b.date ? PERIODS.findIndex(p=>p.k===a.period)-PERIODS.findIndex(p=>p.k===b.period) : (a.date<b.date?-1:1));
+  save();
+  renderPlan();
+  renderTopSub();
+  if(!silent){
+    toast(leftover>0 ? `已生成 ${plan.length} 场，仍有 ${leftover} 场因时段不足未排` : `已生成 ${plan.length} 场排班`);
+  }
+}
+function regeneratePlan(){
+  confirmModal('重新排列？','将基于当前设置重新生成排班，已有完成/失效标记会丢失。','重新排列','取消').then(ok=>{
+    if(ok) generatePlan();
+  });
+}
+function backToPlanEdit(){
+  $('#planResult').classList.add('hide');
+  $('#planEmpty').classList.remove('hide');
+  renderPeople(); renderTermSummary();
+}
+
+/* =========================================================
+   排班表渲染
+   ========================================================= */
+function personName(id){
+  const p = state.people.find(x=>x.id===id);
+  return p ? p.name : '（已删除）';
+}
+function statusTag(s){
+  if(s==='done') return '<span class="tag ok">已完成</span>';
+  if(s==='miss') return '<span class="tag miss">未完成</span>';
+  if(s==='void') return '<span class="tag warn">已失效</span>';
+  return '<span class="tag" style="background:#eef0f3;color:#6b7280">待完成</span>';
+}
+function renderPlan(){
+  const has = state.plan.length>0;
+  $('#planEmpty').classList.toggle('hide', has);
+  $('#planResult').classList.toggle('hide', !has);
+  renderPeople(); renderTermSummary();
+  if(!has) return;
+
+  const t = state.term;
+  $('#planMeta').textContent = `${t.start.slice(5)}~${t.end.slice(5)} · ${state.plan.length} 场`;
+  const rows = state.plan.map((x,i)=>`
+    <tr>
+      <td style="white-space:nowrap">${x.date.slice(5)}<br><span style="color:#6b7280;font-size:11px">${WEEK_CN[parseDate(x.date).getDay()]}</span></td>
+      <td>${PERIOD_LABEL[x.period]}</td>
+      <td style="font-weight:600">${esc(personName(x.personId))}</td>
+      <td><button class="btn sm ${x.status==='done'?'ok':x.status==='miss'?'bad':x.status==='void'?'warn':'ghost'}" onclick="openStatus('${x.id}')">${statusTag(x.status)}</button></td>
+    </tr>`).join('');
+  $('#planTable').innerHTML = `<thead><tr><th>日期</th><th>时段</th><th>人员</th><th>状态</th></tr></thead><tbody>${rows}</tbody>`;
+}
+async function openStatus(planId){
+  const item = state.plan.find(x=>x.id===planId);
+  if(!item) return;
+  const v = await choiceModal('标记该场次', `${item.date} ${PERIOD_LABEL[item.period]} · ${personName(item.personId)}`, [
+    {label:'已完成', value:'done', cls:'ok'},
+    {label:'未完成', value:'miss', cls:'bad'},
+    {label:'该场失效', value:'void', cls:'warn'},
+    {label:'恢复待完成', value:'todo', cls:'ghost'},
+  ]);
+  if(!v) return;
+  item.status = v;
+  save(); renderPlan();
+  if(v==='miss' || v==='void'){
+    const ask = await confirmModal(
+      v==='miss' ? '该场未完成，是否重新排列？' : '该场已失效，是否重新排列？',
+      '可以只重排该日期之后的场次，之前的保留。',
+      '重新排列', '暂不'
+    );
+    if(ask){
+      const onlyAfter = await confirmModal('重排范围','是否只重排「该日期之后」的场次？选择“否”将重排全部。','只重排之后','重排全部');
+      reflowPlan(item, onlyAfter, v);
+    }
+  }
+}
+function reflowPlan(changed, onlyAfter, mark){
+  // 保留已完成/已失效的场次，其余按可用时段重新分配
+  const keepStatus = new Set(['done']);
+  const fixed = state.plan.filter(x=>{
+    if(keepStatus.has(x.status)) return true;
+    if(x.status==='void') return true;
+    if(x.id===changed.id) return true;
+    if(onlyAfter){
+      // 只保留该日期之前的待完成场次不动
+      return x.date < changed.date;
+    }
+    return false;
+  });
+  const freePeople = state.people.filter(p=>p.active!==false);
+  // 统计每人已固定场次（已完成/保留）
+  const fixedCount = {};
+  fixed.forEach(x=>{ if(x.status!=='void') fixedCount[x.personId]=(fixedCount[x.personId]||0)+1; });
+  const expect = state.term.expect || 1;
+  const need = {};
+  freePeople.forEach(p=>{ need[p.id] = Math.max(0, expect - (fixedCount[p.id]||0)); });
+  // 可用时段：该日期之后（或全部）未被固定占用的槽位
+  const occupied = new Set(fixed.map(x=>x.date+'|'+x.period));
+  let slots = buildSlots().filter(s=>!occupied.has(s.date+'|'+s.period));
+  if(onlyAfter) slots = slots.filter(s=> s.date > changed.date);
+  // 同日同一人限制
+  const dayUsed = {};
+  fixed.forEach(x=>{ (dayUsed[x.date]=dayUsed[x.date]||new Set()).add(x.personId); });
+
+  const added = [];
+  let idx = 0, guard = 0;
+  const weekLoad = {};
+  while(Object.values(need).some(v=>v>0) && idx < slots.length*3 && guard<20000){
+    guard++;
+    const slot = slots[idx % slots.length]; idx++;
+    if(!dayUsed[slot.date]) dayUsed[slot.date] = new Set();
+    const wk = weekIndexInTerm(slot.date, state.term.start);
+    if(!weekLoad[wk]) weekLoad[wk] = {};
+    let cands = freePeople.filter(p=>need[p.id]>0 && !dayUsed[slot.date].has(p.id));
+    if(!cands.length) continue;
+    const minW = Math.min(...cands.map(p=>weekLoad[wk][p.id]||0));
+    cands = cands.filter(p=>(weekLoad[wk][p.id]||0)===minW);
+    const pick = cands[0];
+    const item = {id:uid(), date:slot.date, period:slot.period, personId:pick.id, status:'todo'};
+    added.push(item);
+    need[pick.id]--; dayUsed[slot.date].add(pick.id);
+    weekLoad[wk][pick.id] = (weekLoad[wk][pick.id]||0)+1;
+  }
+  state.plan = fixed.concat(added).sort((a,b)=> a.date===b.date ? PERIODS.findIndex(p=>p.k===a.period)-PERIODS.findIndex(p=>p.k===b.period) : (a.date<b.date?-1:1));
+  save(); renderPlan(); renderTopSub();
+  toast(`已重排，新增 ${added.length} 场`);
+}
+
+/* =========================================================
+   保存排班图片（Canvas 绘制，兼容手机）
+   ========================================================= */
+function savePlanImage(scope){
+  if(!state.plan.length){ toast('暂无排班'); return; }
+  let list = state.plan.slice();
+  const today = new Date();
+  if(scope==='week'){
+    const s = startOfWeek(today), e = addDays(s,6);
+    list = list.filter(x=> parseDate(x.date)>=s && parseDate(x.date)<=e);
+  } else if(scope==='month'){
+    const y = today.getFullYear(), m = today.getMonth();
+    list = list.filter(x=>{ const d = parseDate(x.date); return d.getFullYear()===y && d.getMonth()===m; });
+  }
+  if(!list.length){ toast('该范围内没有排班'); return; }
+
+  const rowH = 34, headH = 54, padX = 16, W = 720;
+  const H = headH + list.length*rowH + 28;
+  const cvs = document.createElement('canvas');
+  const dpr = Math.min(window.devicePixelRatio||2, 3);
+  cvs.width = W*dpr; cvs.height = H*dpr;
+  const ctx = cvs.getContext('2d');
+  ctx.scale(dpr,dpr);
+  ctx.fillStyle = '#ffffff'; ctx.fillRect(0,0,W,H);
+
+  // 标题
+  ctx.fillStyle = '#111827';
+  ctx.font = 'bold 20px -apple-system, "PingFang SC", sans-serif';
+  const title = scope==='week' ? '本周排班' : scope==='month' ? '本月排班' : '整学期排班';
+  ctx.fillText(title, padX, 32);
+  ctx.font = '12px -apple-system, "PingFang SC", sans-serif';
+  ctx.fillStyle = '#6b7280';
+  ctx.fillText(`${state.term.start} 至 ${state.term.end} · 共 ${list.length} 场`, padX, 50);
+
+  // 表头
+  const cols = [ {t:'日期',x:padX,w:130}, {t:'时段',x:padX+130,w:90}, {t:'人员',x:padX+220,w:W-padX*2-220-120}, {t:'状态',x:W-padX-120,w:120} ];
+  ctx.fillStyle = '#f3f4f6'; ctx.fillRect(padX, headH, W-padX*2, 30);
+  ctx.fillStyle = '#374151'; ctx.font = 'bold 13px -apple-system, "PingFang SC", sans-serif';
+  cols.forEach(c=>ctx.fillText(c.t, c.x+6, headH+20));
+
+  // 行
+  let y = headH+30;
+  list.forEach((x,i)=>{
+    if(i%2===1){ ctx.fillStyle = '#fafafa'; ctx.fillRect(padX, y, W-padX*2, rowH); }
+    ctx.strokeStyle = '#e5e7eb'; ctx.beginPath(); ctx.moveTo(padX,y+rowH); ctx.lineTo(W-padX,y+rowH); ctx.stroke();
+    ctx.fillStyle = '#111827'; ctx.font = '13px -apple-system, "PingFang SC", sans-serif';
+    const d = parseDate(x.date);
+    ctx.fillText(`${x.date.slice(5)} ${WEEK_CN[d.getDay()]}`, cols[0].x+6, y+22);
+    ctx.fillText(PERIOD_LABEL[x.period], cols[1].x+6, y+22);
+    ctx.fillText(personName(x.personId), cols[2].x+6, y+22);
+    const st = x.status==='done'?'已完成':x.status==='miss'?'未完成':x.status==='void'?'已失效':'待完成';
+    ctx.fillStyle = x.status==='done'?'#059669':x.status==='miss'?'#dc2626':x.status==='void'?'#d97706':'#6b7280';
+    ctx.fillText(st, cols[3].x+6, y+22);
+    y += rowH;
+  });
+
+  const a = document.createElement('a');
+  a.download = `排班_${scope}_${fmtDate(new Date())}.png`;
+  a.href = cvs.toDataURL('image/png');
+  a.click();
+  toast('图片已生成，请在下载中查看');
+}
+
+/* =========================================================
+   出勤记录
+   ========================================================= */
+let attTab = 'week';
+function switchAttTab(t){ attTab = t; document.querySelectorAll('#attTabs button').forEach(b=>b.classList.toggle('on', b.dataset.tab===t)); renderAtt(); }
+function termWeeks(){
+  if(!state.attTerm && state.term) state.attTerm = {start:state.term.start,end:state.term.end};
+  if(!state.attTerm) return [];
+  const s = startOfWeek(parseDate(state.attTerm.start));
+  const e = parseDate(state.attTerm.end);
+  const weeks = [];
+  let cur = new Date(s), i=0;
+  while(cur <= e){
+    weeks.push({idx:i, start:fmtDate(cur), end:fmtDate(addDays(cur,6))});
+    cur = addDays(cur,7); i++;
+  }
+  return weeks;
+}
+function attKey(weekIdx, personId){ return `${state.attTerm.start}_${weekIdx}_${personId}`; }
+function isPresent(weekIdx, personId){ return !!state.attendance[attKey(weekIdx,personId)]; }
+function toggleAtt(weekIdx, personId){
+  const k = attKey(weekIdx, personId);
+  if(state.attendance[k]) delete state.attendance[k];
+  else state.attendance[k] = true;
+  save(); renderAtt();
+}
+function renderAtt(){
+  const box = $('#attBody');
+  const people = state.people.filter(p=>p.active!==false);
+  if(!state.attTerm && state.term) state.attTerm = {start:state.term.start,end:state.term.end};
+  if(!state.attTerm){ box.innerHTML = '<div class="empty">请先在「排班」中设置学期区间</div>'; $('#attTermPill').textContent='未设置学期'; return; }
+  $('#attTermPill').textContent = `${state.attTerm.start.slice(5)}~${state.attTerm.end.slice(5)}`;
+  if(!people.length){ box.innerHTML = '<div class="empty">还没有参与人</div>'; return; }
+
+  const weeks = termWeeks();
+  if(!weeks.length){ box.innerHTML = '<div class="empty">学期区间无效</div>'; return; }
+
+  if(attTab==='week'){
+    // 默认显示“本周”，若不在学期内则显示第一周
+    const now = new Date();
+    let target = weeks.find(w=> now>=parseDate(w.start) && now<=parseDate(w.end)) || weeks[0];
+    box.innerHTML = `
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <button class="btn ghost sm" onclick="attMoveWeek(-1)">上一周</button>
+        <div style="font-size:12.5px;color:#6b7280">第 ${target.idx+1} 周 · ${target.start.slice(5)}~${target.end.slice(5)}</div>
+        <button class="btn ghost sm" onclick="attMoveWeek(1)">下一周</button>
+      </div>
+      <div id="attWeekList"></div>`;
+    window.__attWeekIdx = target.idx;
+    renderAttWeekList(target.idx);
+  } else if(attTab==='month'){
+    const months = {};
+    weeks.forEach(w=>{ const key = w.start.slice(0,7); (months[key]=months[key]||[]).push(w); });
+    box.innerHTML = Object.keys(months).map(m=>`
+      <div class="weekbox">
+        <div class="wk">${m.replace('-','年')}月 <span class="r">${months[m].length} 周</span></div>
+        <div style="margin-top:8px">${months[m].map(w=>weekSummaryHTML(w)).join('')}</div>
+      </div>`).join('');
+    bindWeekClicks();
+  } else {
+    box.innerHTML = `<div class="card" style="margin:0;box-shadow:none;padding:0">
+      ${renderTermStats(people, weeks)}
+    </div>
+    <div style="margin-top:10px">${weeks.map(w=>weekSummaryHTML(w)).join('')}</div>`;
+    bindWeekClicks();
+  }
+}
+function attMoveWeek(delta){
+  const weeks = termWeeks();
+  let i = (window.__attWeekIdx||0) + delta;
+  if(i<0) i=0; if(i>=weeks.length) i=weeks.length-1;
+  window.__attWeekIdx = i;
+  renderAtt();
+}
+function weekSummaryHTML(w){
+  const people = state.people.filter(p=>p.active!==false);
+  const total = people.length;
+  const present = people.filter(p=>isPresent(w.idx,p.id)).length;
+  const miss = total - present;
+  const rate = total ? miss/total : 0;
+  let flag = '';
+  if(rate>=0.8) flag = '<span class="tag bad">严重</span>';
+  else if(rate>=0.5) flag = '<span class="tag warn">注意</span>';
+  return `<div class="att-row" style="cursor:pointer" data-week="${w.idx}">
+    <div class="who">
+      <div class="n">第 ${w.idx+1} 周 ${flag}</div>
+      <div class="m">${w.start.slice(5)}~${w.end.slice(5)} · 出勤 ${present}/${total}</div>
+      <div class="bar"><i style="width:${total?Math.round(present/total*100):0}%;background:${rate>=0.8?'#dc2626':rate>=0.5?'#d97706':'#059669'}"></i></div>
+    </div>
+    <div style="font-size:11.5px;color:#6b7280">点击展开</div>
+  </div>
+  <div class="hide" id="attDetail_${w.idx}" style="padding:6px 0 10px">
+    ${people.map(p=>`
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:7px 0;border-bottom:1px dashed #eef0f3">
+        <div><div style="font-weight:600;font-size:13px">${esc(p.name)}</div>
+        ${p.note?`<div style="font-size:11px;color:#92400e">${esc(p.note)}</div>`:''}</div>
+        <button class="btn sm ${isPresent(w.idx,p.id)?'ok':'ghost'}" onclick="toggleAtt(${w.idx},'${p.id}')">${isPresent(w.idx,p.id)?'已出勤':'未出勤'}</button>
+      </div>`).join('')}
+  </div>`;
+}
+function bindWeekClicks(){
+  document.querySelectorAll('[data-week]').forEach(el=>{
+    el.addEventListener('click', e=>{
+      if(e.target.closest('button')) return;
+      const d = document.getElementById('attDetail_'+el.dataset.week);
+      if(d) d.classList.toggle('hide');
+    });
+  });
+}
+function renderAttWeekList(wIdx){
+  const people = state.people.filter(p=>p.active!==false);
+  const box = document.getElementById('attWeekList');
+  if(!box) return;
+  const total = people.length;
+  const present = people.filter(p=>isPresent(wIdx,p.id)).length;
+  const miss = total-present;
+  const rate = total?miss/total:0;
+  let flag = rate>=0.8?'<span class="tag bad">严重</span>':rate>=0.5?'<span class="tag warn">注意</span>':'';
+  box.innerHTML = `
+    <div style="font-size:12.5px;color:#6b7280;margin-bottom:6px">出勤 ${present}/${total} ${flag}</div>
+    ${people.map(p=>`
+      <div class="att-row">
+        <div class="who">
+          <div class="n">${esc(p.name)}</div>
+          <div class="m">${[p.school,p.grade,p.cls,p.room].filter(Boolean).map(esc).join(' · ')||'—'}</div>
+          ${p.note?`<div class="m" style="color:#92400e">${esc(p.note)}</div>`:''}
+        </div>
+        <button class="btn sm ${isPresent(wIdx,p.id)?'ok':'ghost'}" onclick="toggleAtt(${wIdx},'${p.id}')">${isPresent(wIdx,p.id)?'已出勤':'未出勤'}</button>
+      </div>`).join('')}`;
+}
+function renderTermStats(people, weeks){
+  let totalSlots = 0, presentSlots = 0;
+  const perPerson = {};
+  people.forEach(p=>perPerson[p.id] = {p:0,t:weeks.length});
+  weeks.forEach(w=>{
+    people.forEach(p=>{
+      totalSlots++;
+      if(isPresent(w.idx,p.id)){ presentSlots++; perPerson[p.id].p++; }
+    });
+  });
+  const avg = totalSlots ? (presentSlots/totalSlots*100) : 0;
+  const sorted = people.map(p=>({name:p.name, rate: perPerson[p.id].p/perPerson[p.id].t})).sort((a,b)=>a.rate-b.rate);
+  const worst = sorted.slice(0,3).filter(x=>x.rate<0.8);
+  return `
+    <div class="stat-grid">
+      <div class="stat"><div class="k">学期平均出勤率</div><div class="v">${avg.toFixed(1)}%</div></div>
+      <div class="stat"><div class="k">统计周数</div><div class="v">${weeks.length}</div></div>
+      <div class="stat"><div class="k">总出勤人次</div><div class="v">${presentSlots}/${totalSlots}</div></div>
+      <div class="stat"><div class="k">需关注人数</div><div class="v">${worst.length}</div></div>
+    </div>
+    ${worst.length?`<div style="margin-top:10px;font-size:12.5px"><b>出勤偏低：</b>${worst.map(w=>`${esc(w.name)} ${(w.rate*100).toFixed(0)}%`).join('、')}</div>`:'<div style="margin-top:10px;font-size:12.5px;color:#059669">整体出勤良好</div>'}
+    <div style="margin-top:8px;font-size:11.5px;color:#6b7280">趋势：按周出勤率见下方各周进度条。</div>`;
+}
+
+/* =========================================================
+   备份码：Base64(JSON)，带简单校验
+   ========================================================= */
+function b64encode(str){
+  const bytes = new TextEncoder().encode(str);
+  let bin = '';
+  bytes.forEach(b=>bin += String.fromCharCode(b));
+  return btoa(bin);
+}
+function b64decode(b64){
+  const bin = atob(b64);
+  const bytes = Uint8Array.from(bin, c=>c.charCodeAt(0));
+  return new TextDecoder().decode(bytes);
+}
+function exportCode(){
+  const payload = {app:'tf_sched_att', v:1, ts:Date.now(), data:state};
+  const code = 'TF1.' + b64encode(JSON.stringify(payload));
+  $('#codeOut').classList.remove('hide');
+  $('#codeText').value = code;
+  toast('备份码已生成');
+}
+async function copyCode(){
+  const t = $('#codeText');
+  try{
+    await navigator.clipboard.writeText(t.value);
+    toast('已复制');
+  }catch(e){
+    t.select(); document.execCommand('copy'); toast('已复制');
+  }
+}
+function openImport(){
+  const mask = document.createElement('div');
+  mask.className = 'modal-mask';
+  mask.innerHTML = `<div class="modal">
+    <h3>粘贴备份码恢复</h3>
+    <div class="m-sub">将覆盖当前本机数据，请确认已备份现有内容。</div>
+    <textarea id="impText" placeholder="粘贴以 TF1. 开头的备份码" style="min-height:130px;font-family:ui-monospace,Menlo,monospace;font-size:11.5px"></textarea>
+    <div class="acts">
+      <button class="btn ghost" data-act="cancel">取消</button>
+      <button class="btn" data-act="ok">恢复</button>
+    </div>
+  </div>`;
+  mask.addEventListener('click', async e=>{
+    const act = e.target.closest('[data-act]');
+    if(!act) return;
+    if(act.dataset.act==='cancel'){ mask.remove(); return; }
+    const raw = mask.querySelector('#impText').value.trim();
+    if(!raw){ toast('请粘贴备份码'); return; }
+    try{
+      if(!raw.startsWith('TF1.')) throw new Error('格式不对');
+      const obj = JSON.parse(b64decode(raw.slice(4)));
+      if(obj.app!=='tf_sched_att' || !obj.data) throw new Error('内容不对');
+      const ok = await confirmModal('确认恢复？','当前数据将被覆盖。','恢复','取消');
+      if(!ok) return;
+      state = Object.assign(emptyState(), obj.data);
+      save(); mask.remove();
+      renderPeople(); renderTermSummary(); renderPlan(); renderTopSub(); renderAtt();
+      switchView('plan');
+      toast('已恢复');
+    }catch(err){
+      toast('备份码无法识别，请检查是否完整');
+    }
+  });
+  $('#modalRoot').appendChild(mask);
+}
+function clearAll(){
+  confirmModal('清空全部数据？','人员、排班、出勤都会被删除，且不可恢复。','清空','取消').then(ok=>{
+    if(!ok) return;
+    state = emptyState(); save();
+    renderPeople(); renderTermSummary(); renderPlan(); renderTopSub(); renderAtt();
+    toast('已清空');
+  });
+}
+function installTip(){
+  const ua = navigator.userAgent;
+  const isIOS = /iPhone|iPad|iPod/i.test(ua);
+  choiceModal('添加到主屏幕', isIOS
+    ? 'Safari 打开本页 → 底部分享按钮 → 添加到主屏幕。图标为十字架。'
+    : 'Chrome 打开本页 → 右上角菜单 → 添加到主屏幕 / 安装应用。图标为十字架。',
+    [{label:'知道了', value:1, cls:'ok'}]);
+}
+
+/* =========================================================
+   初始化
+   ========================================================= */
+(function init(){
+  renderTopSub();
+  renderPeople();
+  renderTermSummary();
+  renderPlan();
+  renderAtt();
+  switchView('plan');
+})();
+</script>
+</body>
+</html>
