@@ -2,46 +2,31 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <meta name="theme-color" content="#f5f6f2">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="同行">
+<meta name="format-detection" content="telephone=no,email=no,address=no">
 <title>同行 · 团契关怀</title>
 <style>
-:root {
-  --bg:#f5f6f2;
-  --card:#fff;
-  --ink:#26332b;
-  --muted:#849087;
-  --line:#e7ebe5;
-  --green:#285c46;
-  --green-bg:#e8f1e9;
-  --red:#b94d43;
-  --orange:#a87835;
-  --radius:17px;
+:root{
+  --bg:#f5f6f2;--card:#fff;--ink:#26332b;--muted:#849087;--line:#e7ebe5;
+  --green:#285c46;--green-bg:#e8f1e9;--red:#b94d43;--orange:#a87835;--radius:17px;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%}
 body{
-  margin:0;background:var(--bg);color:var(--ink);
-  font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",
-  "PingFang SC","Microsoft YaHei",sans-serif;
+  margin:0;background:var(--bg);color:var(--ink);touch-action:manipulation;
+  font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
 }
-button,input,select,textarea{font:inherit}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit;color:var(--ink)}
 button{cursor:pointer}
-button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{
-  outline:2px solid #83aa91;outline-offset:2px
-}
+button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid #83aa91;outline-offset:2px}
 #app{max-width:560px;margin:auto;min-height:100dvh;padding-bottom:90px}
-.top{
-  position:sticky;top:0;z-index:5;background:#f5f6f2ed;
-  backdrop-filter:blur(14px);padding:12px 17px;
-  display:flex;align-items:center;justify-content:space-between
-}
+.top{position:sticky;top:0;z-index:5;background:#f5f6f2ed;backdrop-filter:blur(14px);padding:12px 17px;display:flex;align-items:center;justify-content:space-between}
 .brand{display:flex;align-items:center;gap:10px}
-.logo{
-  width:36px;height:36px;border-radius:12px;background:var(--green);
-  color:white;display:grid;place-items:center;font-size:19px;font-weight:750
-}
+.logo{width:36px;height:36px;border-radius:12px;background:var(--green);color:white;display:grid;place-items:center;font-size:19px;font-weight:750}
 .brand-name{font-size:19px;font-weight:800;letter-spacing:.5px}
 .brand-sub{font-size:9px;color:var(--muted);letter-spacing:1.5px}
 .date-now{font-size:12px;color:var(--muted)}
@@ -67,18 +52,14 @@ p{margin:0 0 9px}
 .progress div{height:100%;background:#7eaa8d;border-radius:8px}
 .hero .progress{background:#ffffff2b}
 .hero .progress div{background:#d7eadb}
-.btn{
-  border:0;border-radius:11px;padding:10px 14px;font-size:13px;
-  font-weight:700;display:inline-flex;align-items:center;
-  justify-content:center;gap:5px
-}
+.btn{border:0;border-radius:11px;padding:10px 14px;font-size:13px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;gap:5px}
 .primary{background:var(--green);color:white}
 .soft{background:var(--green-bg);color:var(--green)}
 .plain{background:#f0f2ee;color:var(--ink)}
 .danger{background:#fbecea;color:var(--red)}
 .mini{padding:7px 9px;font-size:12px;border-radius:9px}
 .block{width:100%}
-.text-btn{border:0;background:none;color:var(--green);font-weight:700;font-size:13px;padding:6px}
+.text-btn{border:0;background:none;color:var(--ink);font-weight:700;font-size:13px;padding:6px}
 .row{display:flex;align-items:center;gap:10px}
 .between{display:flex;align-items:center;justify-content:space-between;gap:10px}
 .flex1{flex:1;min-width:0}
@@ -101,11 +82,7 @@ p{margin:0 0 9px}
 .empty-icon{font-size:28px;margin-bottom:7px;color:#9bb19e}
 .empty p{font-size:12px}
 label.field{display:block;font-size:12px;color:#59665c;margin-bottom:13px}
-input,select,textarea{
-  display:block;width:100%;min-width:0;margin-top:6px;
-  padding:11px 12px;border:1px solid #e1e7df;border-radius:11px;
-  background:white;color:var(--ink);font-size:16px
-}
+input,select,textarea{display:block;width:100%;min-width:0;margin-top:6px;padding:11px 12px;border:1px solid #e1e7df;border-radius:11px;background:white;color:var(--ink);font-size:16px}
 textarea{min-height:90px;resize:vertical;line-height:1.6}
 .field-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
 .search{position:relative;margin:12px 0}
@@ -115,18 +92,15 @@ textarea{min-height:90px;resize:vertical;line-height:1.6}
 .chip{flex-shrink:0;border:1px solid var(--line);background:white;color:#687268;border-radius:10px;padding:7px 11px;font-size:12px}
 .chip.active{background:var(--green);border-color:var(--green);color:white}
 .statuses{display:flex;gap:5px;margin-top:9px}
-.status{
-  flex:1;border:1px solid var(--line);background:white;color:#7a847b;
-  border-radius:8px;padding:8px 1px;font-size:12px
-}
+.status{flex:1;border:1px solid var(--line);background:white;color:#7a847b;border-radius:8px;padding:8px 1px;font-size:12px}
 .status.active{background:var(--green-bg);border-color:#bed5c4;color:var(--green);font-weight:750}
 .status.absent.active{background:#fbecea;color:var(--red);border-color:#efc6c0}
-.status.leave.active{background:#f7efe1;color:var(--orange);border-color:#ead8b8}
 details{border:1px solid var(--line);border-radius:13px;background:white;margin-bottom:9px;overflow:hidden}
 summary{cursor:pointer;list-style:none;padding:13px}
 summary::-webkit-details-marker{display:none}
 details[open]>summary{border-bottom:1px solid var(--line)}
 .details-body{padding:12px}
+.scroll-body{max-height:360px;overflow-y:auto;-webkit-overflow-scrolling:touch}
 .week{margin-top:9px;background:#fafbf9}
 .week>summary{padding:12px}
 .week-form{border-top:1px solid var(--line);padding-top:13px;margin-top:12px}
@@ -136,12 +110,8 @@ details[open]>summary{border-bottom:1px solid var(--line)}
 .check-chip{display:inline-flex;align-items:center;gap:6px;background:#f5f6f2;border-radius:9px;padding:8px 10px;font-size:12px}
 .check-chip input{width:17px;height:17px;margin:0;accent-color:var(--green)}
 .notice{background:#edf2ec;color:#596c5d;padding:11px 12px;border-radius:11px;font-size:12px;line-height:1.7;margin-bottom:12px}
-.bottom{
-  position:fixed;z-index:10;bottom:0;left:50%;transform:translateX(-50%);
-  width:100%;max-width:560px;display:grid;grid-template-columns:repeat(5,1fr);
-  background:#fffffffa;backdrop-filter:blur(14px);border-top:1px solid var(--line);
-  padding:8px 5px calc(8px + env(safe-area-inset-bottom))
-}
+.notice.warn{background:#fbf0dd;color:#8a6420}
+.bottom{position:fixed;z-index:10;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:560px;display:grid;grid-template-columns:repeat(5,1fr);background:#fffffffa;backdrop-filter:blur(14px);border-top:1px solid var(--line);padding:8px 5px calc(8px + env(safe-area-inset-bottom))}
 .nav{border:0;background:transparent;color:#8b948a;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:10px;padding:3px 0}
 .nav-icon{font-size:21px;line-height:1.25}
 .nav.active{color:var(--green);font-weight:750}
@@ -149,17 +119,69 @@ details[open]>summary{border-bottom:1px solid var(--line)}
 .modal-root{display:none;position:fixed;inset:0;z-index:30;align-items:flex-end;justify-content:center}
 .modal-root.open{display:flex}
 .modal-overlay{position:absolute;inset:0;background:#18271e66}
-.sheet{
-  position:relative;z-index:1;width:100%;max-width:560px;max-height:92dvh;
-  overflow-y:auto;background:var(--bg);border-radius:23px 23px 0 0;
-  padding:10px 16px calc(22px + env(safe-area-inset-bottom))
-}
+.sheet{position:relative;z-index:1;width:100%;max-width:560px;max-height:92dvh;overflow-y:auto;background:var(--bg);border-radius:23px 23px 0 0;padding:10px 16px calc(22px + env(safe-area-inset-bottom))}
 .handle{width:35px;height:4px;background:#d6dcd4;border-radius:6px;margin:2px auto 15px}
 .sheet-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:17px}
 .sheet-head h2{margin:0}
 .close{width:34px;height:34px;border:0;border-radius:50%;background:#e9ece7;font-size:20px}
 .rule{border:0;border-top:1px solid var(--line);margin:16px 0}
 .toast{position:fixed;z-index:60;bottom:calc(83px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);max-width:90vw;background:#263a2d;color:white;padding:11px 16px;border-radius:11px;font-size:13px}
+
+.folded .fold-full{display:none}
+.folded.open .fold-full{display:inline}
+.folded .fold-more{color:var(--ink);font-weight:700;padding:0 2px}
+.folded.open .fold-more{display:none}
+
+.seg{display:flex;background:#ecefe9;border-radius:12px;padding:3px;margin:12px 0}
+.seg-btn{flex:1;border:0;background:transparent;padding:8px;border-radius:9px;font-size:13px;font-weight:700;color:#77827a}
+.seg-btn.active{background:white;color:var(--green);box-shadow:0 1px 3px #26332b14}
+
+.chart-bars{display:flex;align-items:flex-end;gap:6px;height:168px;padding:24px 2px 0;overflow-x:auto;border-bottom:1px solid var(--line)}
+.bar-col{flex:1 0 38px;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%}
+.bar{width:100%;max-width:26px;background:linear-gradient(#3f7a5f,#285c46);border-radius:5px 5px 0 0;position:relative;min-height:2px}
+.bar.empty{background:#dfe5de}
+.bar-val{position:absolute;top:-16px;left:50%;transform:translateX(-50%);font-size:9px;color:#4a5a4f;white-space:nowrap}
+.bar-x{font-size:9px;color:var(--muted);margin-top:6px;white-space:nowrap}
+.hbar{display:flex;align-items:center;gap:8px;margin-bottom:9px}
+.hbar-name{width:66px;font-size:12px;flex:0 0 66px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hbar-track{flex:1;height:10px;background:#ecefe9;border-radius:6px;overflow:hidden}
+.hbar-fill{height:100%;background:var(--green);border-radius:6px}
+.hbar-fill.low{background:#c08a4a}
+.hbar-val{width:48px;text-align:right;font-size:11px;font-weight:700;flex:0 0 48px}
+.ring{width:64px;height:64px;flex:0 0 64px}
+.legend{display:flex;gap:14px;font-size:11px;color:var(--muted);margin-top:10px}
+.legend i{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:4px;vertical-align:middle}
+
+.pulse-card{border:1px solid var(--line);border-radius:16px;padding:13px;background:#fff;min-width:0}
+.pulse-card.bad{background:#fdf1ef;border-color:#efc6c0}
+.pulse-card.good{background:#eef5ef;border-color:#cfe2d5}
+.pulse-title{font-size:12px;color:var(--muted);margin-bottom:6px;display:flex;justify-content:space-between;gap:6px}
+.pulse-num{font-size:24px;font-weight:800;line-height:1.15}
+.pulse-num span{font-size:12px;font-weight:600;color:var(--muted)}
+.pulse-card .progress{margin:9px 0 0}
+.pulse-card.bad .progress div{background:#c96a5f}
+.pulse-card.good .progress div{background:#4f8a68}
+.pulse-tag{font-size:11px;font-weight:700;margin-top:8px}
+.pulse-card.bad .pulse-tag{color:var(--red)}
+.pulse-card.good .pulse-tag{color:var(--green)}
+
+.pick-list{max-height:260px;overflow:auto;border:1px solid var(--line);border-radius:12px;background:#fff;margin-top:8px}
+.pick-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:1px solid var(--line);width:100%;background:none;border-left:0;border-right:0;border-top:0;text-align:left;color:var(--ink)}
+.pick-item .name{color:var(--ink)}
+.pick-item:last-child{border-bottom:0}
+.pick-item.on{background:#f2f7f3}
+.pick-item[disabled]{opacity:.55}
+
+#tour-mask{position:fixed;inset:0;z-index:1000;background:rgba(20,30,24,.55);display:none}
+body.touring #tour-mask{display:block}
+.tour-hl{position:relative;z-index:1001;box-shadow:0 0 0 3px #fff,0 0 0 6px var(--green);border-radius:12px;background:var(--card)}
+#tour-bubble{position:fixed;z-index:1002;left:50%;transform:translateX(-50%);bottom:calc(96px + env(safe-area-inset-bottom));width:calc(100% - 30px);max-width:520px;background:white;border-radius:16px;padding:15px;box-shadow:0 10px 40px #18271e33;display:none}
+body.touring #tour-bubble{display:block}
+#tour-bubble h3{margin:0 0 6px;font-size:16px;color:var(--green)}
+#tour-bubble p{margin:0 0 12px;font-size:13px;line-height:1.65;color:#4a5a4f}
+.tour-actions{display:flex;gap:8px;justify-content:space-between;align-items:center}
+.tour-step{font-size:11px;color:var(--muted)}
+
 @media(min-width:561px){
   body{padding:15px 0}
   #app{min-height:calc(100dvh - 30px);border-radius:23px;overflow:hidden;box-shadow:0 5px 40px #2030240a}
@@ -174,7 +196,7 @@ details[open]>summary{border-bottom:1px solid var(--line)}
   <header class="top">
     <div class="brand">
       <div class="logo">同</div>
-      <div><div class="brand-name">同行</div><div class="brand-sub">CARE & FELLOWSHIP</div></div>
+      <div><div class="brand-name">同行</div><div class="brand-sub">CARE &amp; FELLOWSHIP</div></div>
     </div>
     <div class="row">
       <span class="date-now" id="today"></span>
@@ -192,13 +214,17 @@ details[open]>summary{border-bottom:1px solid var(--line)}
 </div>
 <div class="modal-root" id="modal"></div>
 <div id="toast-root"></div>
+<div id="tour-mask"></div>
+<div id="tour-bubble"></div>
 
 <script>
 'use strict';
 
 const $ = s => document.querySelector(s);
-const KEY = 'tongxing_care_v2';
+const KEY = 'tongxing_care_v3';
+const OLD_KEY = 'tongxing_care_v2';
 
+/* ---------- 工具 ---------- */
 function uid(){
   return globalThis.crypto?.randomUUID
     ? crypto.randomUUID()
@@ -218,46 +244,100 @@ function rangeOK(r){return !!r?.start&&!!r?.end&&r.start<=r.end}
 function inside(d,r){return !!d&&rangeOK(r)&&d>=r.start&&d<=r.end}
 function daysIn(r){return rangeOK(r)?Math.max(1,Math.round((dateObj(r.end)-dateObj(r.start))/86400000)+1):1}
 function weeksIn(r){return Math.max(1,Math.ceil(daysIn(r)/7))}
-function weekStarts(r){
-  if(!rangeOK(r))return [];
-  const out=[];
-  for(let d=r.start;d<=r.end&&out.length<100;d=addDays(d,7))out.push(d);
-  return out;
+function weekStartSunday(s){
+  const d=dateObj(s);
+  return addDays(s, -d.getDay());
 }
+function round1(x){return Math.round(x*10)/10}
+function pctText(n,d){return d>0 ? (n/d*100).toFixed(1)+'%' : '—'}
+function fold(txt,limit=20){
+  const s=String(txt||'');
+  if(!s)return '';
+  if(s.length<=limit)return esc(s);
+  return `<span class="folded" data-action="toggle-text">${esc(s.slice(0,limit))}<span class="fold-more">…展开</span><span class="fold-full">${esc(s.slice(limit))}</span></span>`;
+}
+
+/* ---------- 数据 ---------- */
 function fresh(){
   const start=today();
   return {
-    version:2,
+    version:3,
     settings:{
       configured:false,semesterName:'本学期',startDate:start,
       endDate:addDays(start,111),defaultTarget:2,
-      activeAttendanceWeek:'',deletedAttendanceWeeks:[]
+      activeAttendanceWeek:'',deletedAttendanceWeeks:[],
+      lastBackupAt:'',tutorialDone:false,dismissBackupReminder:''
     },
-    categories:[{id:'uncategorized',name:'未分类'}],
+    categories:[{id:'uncategorized',name:'未分类',virtual:true,target:null}],
     members:[],visits:[],meetings:[],weeklyLogs:[]
   };
 }
-function normalize(x){
+function normalize(raw){
   const d=fresh();
-  if(!x||typeof x!=='object')return d;
-  const s={...d,...x};
-  s.settings={...d.settings,...(x.settings||{})};
+  if(!raw||typeof raw!=='object')return d;
+  const s={...d};
+  s.settings={...d.settings,...(raw.settings||{})};
   s.settings.deletedAttendanceWeeks=Array.isArray(s.settings.deletedAttendanceWeeks)?s.settings.deletedAttendanceWeeks:[];
-  s.categories=Array.isArray(x.categories)&&x.categories.length?x.categories:d.categories;
-  if(!s.categories.some(c=>c.id==='uncategorized'))s.categories.unshift({id:'uncategorized',name:'未分类'});
-  s.members=Array.isArray(x.members)?x.members:[];
-  s.visits=Array.isArray(x.visits)?x.visits:[];
-  s.meetings=Array.isArray(x.meetings)?x.meetings:[];
-  s.weeklyLogs=Array.isArray(x.weeklyLogs)?x.weeklyLogs:[];
-  s.members.forEach(m=>{if(!Array.isArray(m.categoryIds))m.categoryIds=m.categoryId?[m.categoryId]:['uncategorized']});
+  if(typeof s.settings.lastBackupAt!=='string')s.settings.lastBackupAt='';
+  if(typeof s.settings.tutorialDone!=='boolean')s.settings.tutorialDone=false;
+  if(typeof s.settings.dismissBackupReminder!=='string')s.settings.dismissBackupReminder='';
+
+  let cats=Array.isArray(raw.categories)&&raw.categories.length?raw.categories.map(c=>({...c})):[];
+  cats=cats.filter(c=>c&&c.id);
+  if(!cats.some(c=>c.id==='uncategorized'))cats.unshift({id:'uncategorized',name:'未分类',virtual:true,target:null});
+  cats.forEach(c=>{
+    if(c.id==='uncategorized'){c.virtual=true;c.name='未分类'}
+    if(c.target===undefined)c.target=null;
+  });
+  s.categories=cats;
+
+  s.members=(Array.isArray(raw.members)?raw.members:[]).map(m=>{
+    const mm={...m};
+    const ids=Array.isArray(m.categoryIds)?m.categoryIds:(m.categoryId?[m.categoryId]:[]);
+    mm.categoryIds=ids.filter(id=>id!=='uncategorized'&&s.categories.some(c=>c.id===id&&!c.virtual));
+    mm.targetOverride=(m.targetOverride===null||m.targetOverride===undefined||m.targetOverride==='')?null:Number(m.targetOverride);
+    mm.targetCategoryId=m.targetCategoryId||null;
+    mm.archived=!!m.archived;
+    return mm;
+  });
+  s.visits=(Array.isArray(raw.visits)?raw.visits:[]).map(v=>({...v}));
+  s.meetings=(Array.isArray(raw.meetings)?raw.meetings:[]).map(mt=>{
+    const x={...mt};
+    x.records=x.records&&typeof x.records==='object'?{...x.records}:{};
+    Object.keys(x.records).forEach(k=>{if(x.records[k]==='leave')x.records[k]='absent'});
+    x.label='聚会';
+    return x;
+  });
+  s.weeklyLogs=(Array.isArray(raw.weeklyLogs)?raw.weeklyLogs:[]).map(l=>({...l}));
+  s.version=3;
   return s;
 }
+
 let state;
-try{state=normalize(JSON.parse(localStorage.getItem(KEY)||'null'))}catch{state=fresh()}
+let migrated=false;
+try{
+  let raw=JSON.parse(localStorage.getItem(KEY)||'null');
+  if(!raw){
+    raw=JSON.parse(localStorage.getItem(OLD_KEY)||'null');
+    if(raw)migrated=true;
+  }
+  state=normalize(raw);
+}catch{state=fresh()}
+
 let tab=state.settings.configured?'home':'settings';
 let query='';
 let categoryFilter='all';
 let archivedFilter=false;
+let attView='register';
+let analysisRange={start:'',end:''};
+let memberSort='default';
+let memberSortDir='desc';
+let expandedGroups=new Set();
+let selectedPick=new Set();
+let starsExpanded=false;
+let visitsExpanded=false;
+let perRateExpanded=false;
+let pickFromManage=false;
 let toastTimer;
 
 function save(){
@@ -270,115 +350,230 @@ function say(s){
   toastTimer=setTimeout(()=>$('#toast-root').innerHTML='',2500);
 }
 function activeMembers(){return state.members.filter(m=>!m.archived)}
+function realCats(){return state.categories.filter(c=>!c.virtual)}
+function hasAnyCat(m){return (m.categoryIds||[]).some(id=>state.categories.some(c=>c.id===id&&!c.virtual))}
 function categoryNames(m){
-  const ids=m.categoryIds?.length?m.categoryIds:['uncategorized'];
-  return ids.map(id=>state.categories.find(c=>c.id===id)?.name).filter(Boolean).join('、')||'未分类';
+  const ids=(m.categoryIds||[]).filter(id=>state.categories.some(c=>c.id===id&&!c.virtual));
+  const names=ids.map(id=>state.categories.find(c=>c.id===id)?.name).filter(Boolean);
+  return names.length?names.join('、'):'未分类';
 }
-function targetFor(m){
-  const v=m.targetOverride;
-  return v!==null&&v!==undefined&&v!==''?Math.max(0,Number(v)||0):Math.max(0,Number(state.settings.defaultTarget)||0);
+function memberCats(m){
+  const ids=(m.categoryIds||[]).filter(id=>state.categories.some(c=>c.id===id&&!c.virtual));
+  return ids.map(id=>state.categories.find(c=>c.id===id)).filter(Boolean);
 }
+function targetInfo(m){
+  if(m.targetOverride!=null&&m.targetOverride!==''){
+    return {value:Math.max(0,Number(m.targetOverride)||0),source:'个人设置'};
+  }
+  const cats=(m.categoryIds||[])
+    .map(id=>state.categories.find(c=>c.id===id))
+    .filter(c=>c&&!c.virtual&&c.target!=null&&c.target!=='');
+  if(!cats.length){
+    return {value:Math.max(0,Number(state.settings.defaultTarget)||0),source:'学期默认'};
+  }
+  if(m.targetCategoryId){
+    const c=cats.find(c=>c.id===m.targetCategoryId);
+    if(c)return {value:Math.max(0,Number(c.target)||0),source:'分类「'+c.name+'」'};
+  }
+  if(cats.length===1){
+    return {value:Math.max(0,Number(cats[0].target)||0),source:'分类「'+cats[0].name+'」'};
+  }
+  const uniq=[...new Set(cats.map(c=>Number(c.target)||0))];
+  if(uniq.length===1)return {value:uniq[0],source:'多个分类（目标一致）'};
+  return {value:Math.max(0,Number(cats[0].target)||0),source:'分类「'+cats[0].name+'」（未确认）',conflict:true};
+}
+function targetFor(m){return targetInfo(m).value}
 function semester(){return {start:state.settings.startDate,end:state.settings.endDate}}
-function moduleRange(){return semester()}
 function semesterVisits(){return state.visits.filter(v=>inside(v.date,semester()))}
 function memberVisits(id){return semesterVisits().filter(v=>v.memberId===id)}
 function latestVisit(id){return state.visits.filter(v=>v.memberId===id).sort((a,b)=>b.date.localeCompare(a.date))[0]||null}
 function memberName(id){return state.members.find(m=>m.id===id)?.name||'已删除成员'}
 function initials(s){return String(s||'?').trim().slice(0,1)}
+
 function stats(){
-  let total=0,done=0;
+  let total=0,done=0,actual=0;
   activeMembers().forEach(m=>{
     const t=targetFor(m);
-    total+=t;
-    done+=Math.min(t,memberVisits(m.id).length);
+    const n=memberVisits(m.id).length;
+    total+=t;done+=Math.min(t,n);actual+=n;
   });
   const r=semester();
   return {
-    total,done,remaining:Math.max(0,total-done),
-    actual:semesterVisits().length,
+    total,done,remaining:Math.max(0,total-done),actual,
     progress:total?Math.min(100,done/total*100):0,
     perWeek:total/weeksIn(r),
     perMonth:total*30.4375/daysIn(r),
-    people:activeMembers().length,
-    peoplePerWeek:activeMembers().length/weeksIn(r)
+    people:activeMembers().length
   };
 }
-function attendanceWeeks(){
-  return state.meetings.filter(m=>inside(m.weekStart||m.date,semester()))
-    .sort((a,b)=>(a.weekStart||a.date).localeCompare(b.weekStart||b.date));
+
+function weekStarts(r){
+  if(!rangeOK(r))return [];
+  const out=[];
+  for(let w=weekStartSunday(r.start); w<=r.end && out.length<200; w=addDays(w,7))out.push(w);
+  return out;
+}
+function buildWeeks(r){
+  return weekStarts(r).map(start=>({start,end:addDays(start,6)}));
 }
 function syncWeeks(){
-  const range=semester();
-  if(!rangeOK(range))return;
-  for(const start of weekStarts(range)){
-    if(state.settings.deletedAttendanceWeeks.includes(start))continue;
-    if(state.meetings.some(m=>(m.weekStart||m.date)===start))continue;
-    state.meetings.push({
-      id:uid(),weekStart:start,date:start,label:'团契聚会',records:{}
-    });
+  const r=semester();
+  if(!rangeOK(r))return;
+  for(const w of weekStarts(r)){
+    if(state.settings.deletedAttendanceWeeks.includes(w))continue;
+    if(state.meetings.some(m=>(m.weekStart||m.date)===w))continue;
+    state.meetings.push({id:uid(),weekStart:w,date:w,label:'聚会',records:{}});
   }
   save();
 }
-function currentWeekStart(){
-  const t=today(),r=semester();
-  if(inside(t,r)){
-    const n=Math.floor((dateObj(t)-dateObj(r.start))/86400000/7);
-    return addDays(r.start,n*7);
-  }
-  return r.start;
+function attendanceWeeks(){
+  const r=semester();
+  return state.meetings.filter(m=>{
+    const ws=m.weekStart||m.date;
+    const we=addDays(ws,6);
+    return ws<=r.end && we>=r.start;
+  }).sort((a,b)=>(a.weekStart||a.date).localeCompare(b.weekStart||b.date));
 }
+function currentWeekStart(){return weekStartSunday(today())}
 function selectedMeeting(){
-  const meetings=attendanceWeeks();
-  return meetings.find(m=>m.weekStart===state.settings.activeAttendanceWeek)
-    ||meetings.find(m=>m.weekStart===currentWeekStart())
-    ||meetings[0]||null;
-}
-function attendanceStats(){
-  let p=0,a=0,l=0,un=0;
-  const meetings=attendanceWeeks();
-  meetings.forEach(mt=>activeMembers().forEach(m=>{
-    const v=mt.records?.[m.id]||'unmarked';
-    if(v==='present')p++;
-    else if(v==='absent')a++;
-    else if(v==='leave')l++;
-    else un++;
-  }));
-  return {p,a,l,un,meetings:meetings.length,rate:p+a?p/(p+a)*100:0};
-}
-function memberAttendance(id){
-  let p=0,a=0,l=0;
-  attendanceWeeks().forEach(mt=>{
-    const v=mt.records?.[id]||'unmarked';
-    if(v==='present')p++;
-    if(v==='absent')a++;
-    if(v==='leave')l++;
-  });
-  return {p,a,l,rate:p+a?p/(p+a)*100:0,total:p+a+l};
+  const ms=attendanceWeeks();
+  return ms.find(m=>m.weekStart===state.settings.activeAttendanceWeek)
+    ||ms.find(m=>m.weekStart===currentWeekStart())
+    ||ms[ms.length-1]||ms[0]||null;
 }
 function currentWeekRange(){
-  const r=semester(),t=today();
-  if(inside(t,r)){
-    const i=Math.floor((dateObj(t)-dateObj(r.start))/86400000/7);
-    const start=addDays(r.start,i*7);
-    return {start,end:addDays(start,Math.min(6,Math.round((dateObj(r.end)-dateObj(start))/86400000)) )};
-  }
-  const d=dateObj(t);
-  const offset=(d.getDay()+6)%7;
-  return {start:addDays(t,-offset),end:addDays(t,6-offset)};
+  const s=weekStartSunday(today());
+  return {start:s,end:addDays(s,6)};
 }
-function buildWeeks(r){
-  return weekStarts(r).map(start=>({
-    start,end:addDays(start,Math.min(6,Math.round((dateObj(r.end)-dateObj(start))/86400000)))
+function attendanceStats(){
+  let p=0,a=0,un=0;
+  attendanceWeeks().forEach(mt=>activeMembers().forEach(m=>{
+    const v=mt.records?.[m.id];
+    if(v==='present')p++;
+    else if(v==='absent')a++;
+    else un++;
   }));
+  return {p,a,un,meetings:attendanceWeeks().length,rate:(p+a)?p/(p+a)*100:null};
+}
+function memberAttendance(id){
+  let p=0,a=0,un=0;
+  attendanceWeeks().forEach(mt=>{
+    const v=mt.records?.[id];
+    if(v==='present')p++;
+    else if(v==='absent')a++;
+    else un++;
+  });
+  return {p,a,un,rate:(p+a)?p/(p+a)*100:null,total:p+a};
+}
+function analysisData(start,end){
+  const ms=state.meetings.filter(m=>{
+    const ws=m.weekStart||m.date;
+    const we=addDays(ws,6);
+    return ws<=end && we>=start;
+  }).sort((a,b)=>(a.weekStart||a.date).localeCompare(b.weekStart||b.date));
+  const members=activeMembers();
+  let P=0,A=0,U=0;
+  const per=members.map(m=>{
+    let p=0,a=0,u=0;
+    ms.forEach(mt=>{
+      const v=mt.records?.[m.id];
+      if(v==='present')p++;
+      else if(v==='absent')a++;
+      else u++;
+    });
+    P+=p;A+=a;U+=u;
+    return {m,p,a,u,rate:(p+a)?p/(p+a)*100:null};
+  });
+  const weeks=ms.map(mt=>{
+    let p=0,a=0,u=0;
+    members.forEach(m=>{
+      const v=mt.records?.[m.id];
+      if(v==='present')p++;
+      else if(v==='absent')a++;
+      else u++;
+    });
+    return {label:shortDate(mt.weekStart||mt.date),p,a,u,rate:(p+a)?p/(p+a)*100:null};
+  });
+  return {ms,per,P,A,U,rate:(P+A)?P/(P+A)*100:null,weeks};
+}
+function analysisGroups(d){
+  const groups=realCats().map(c=>({
+    id:c.id,name:c.name,
+    members:d.per.filter(x=>(x.m.categoryIds||[]).includes(c.id))
+  })).filter(g=>g.members.length);
+  const un=d.per.filter(x=>!hasAnyCat(x.m));
+  if(un.length)groups.push({id:'uncat',name:'未分类',members:un});
+  return groups.map(g=>{
+    let P=0,A=0,U=0;
+    g.members.forEach(x=>{P+=x.p;A+=x.a;U+=x.u});
+    return {id:g.id,name:g.name,members:g.members,P,A,U,rate:(P+A)?P/(P+A)*100:null};
+  });
+}
+function memberTrend(id,n=12){
+  const weeks=attendanceWeeks().slice(-n);
+  return weeks.map(mt=>{
+    const v=mt.records?.[id];
+    return {label:shortDate(mt.weekStart||mt.date),value:v==='present'?100:v==='absent'?0:null};
+  });
 }
 
-/* 页面 */
+function visitCountsByMember(){
+  const c={};
+  state.visits.forEach(v=>{c[v.memberId]=(c[v.memberId]||0)+1});
+  return c;
+}
+function latestByMember(){
+  const c={};
+  state.visits.forEach(v=>{
+    if(!c[v.memberId]||v.date>c[v.memberId])c[v.memberId]=v.date;
+  });
+  return c;
+}
+function visitorCounts(){
+  const c={};
+  state.visits.forEach(v=>{
+    String(v.visitor||'').split(/[、,，]/).map(x=>x.trim()).filter(Boolean).forEach(n=>{
+      c[n]=(c[n]||0)+1;
+    });
+  });
+  return c;
+}
+
+function resetExpanded(){
+  expandedGroups.clear();
+  starsExpanded=false;
+  visitsExpanded=false;
+  perRateExpanded=false;
+}
+
+/* ---------- 渲染 ---------- */
 function render(){
-  if(tab==='attendance')syncWeeks();
+  if(tab==='attendance'&&attView==='register')syncWeeks();
   const pages={home:homePage,visits:visitsPage,attendance:attendancePage,members:membersPage,weekly:weeklyPage,settings:settingsPage};
   $('#screen').innerHTML=(pages[tab]||homePage)();
   document.querySelectorAll('.nav').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));
   $('#today').textContent=shortDate(today());
+  maybeStartTour();
+}
+function backupReminder(){
+  if(!state.settings.configured)return '';
+  if(state.settings.dismissBackupReminder===today())return '';
+  const last=state.settings.lastBackupAt;
+  let due=false,msg='';
+  if(!last){due=true;msg='还没有导出过备份码。资料只存在本机浏览器，清理数据后会永久丢失。'}
+  else{
+    const diff=Math.floor((dateObj(today())-dateObj(last))/86400000);
+    if(diff>=7){due=true;msg=`上次备份是 ${diff} 天前。资料只存在本机，建议现在导出备份码。`}
+  }
+  if(!due)return '';
+  return `<div class="notice warn">
+    <div style="font-weight:700;margin-bottom:4px">⚠ 备份提醒</div>
+    ${esc(msg)}
+    <div class="row" style="margin-top:9px">
+      <button type="button" class="btn soft mini" data-action="settings">去备份</button>
+      <button type="button" class="btn plain mini" data-action="dismiss-backup">今天不再提醒</button>
+    </div>
+  </div>`;
 }
 function recentVisits(n=4){
   const vs=state.visits.slice().sort((a,b)=>b.date.localeCompare(a.date)).slice(0,n);
@@ -387,7 +582,7 @@ function recentVisits(n=4){
     <div class="item"><div class="avatar">${v.star?'★':'♡'}</div>
       <div class="item-content"><div class="name">${esc(memberName(v.memberId))}${v.star?' ★':''}</div>
       <div class="desc">${esc(shortDate(v.date))} · ${esc(v.visitor||'未填写同工')}</div>
-      ${v.log?`<div class="desc">${esc(v.log)}</div>`:''}</div>
+      ${v.log?`<div class="desc">${fold(v.log)}</div>`:''}</div>
       <button type="button" class="btn plain mini" data-action="edit-visit" data-id="${esc(v.id)}">编辑</button>
     </div>`).join('')}</div>`;
 }
@@ -397,11 +592,12 @@ function homePage(){
   const needs=activeMembers().map(m=>{
     const last=latestVisit(m.id),att=memberAttendance(m.id);
     const days=last?Math.floor((dateObj(today())-dateObj(last.date))/86400000):999;
-    const score=(!last?4:days>=28?3:days>=14?1:0)+(att.total>=3&&att.rate<50?2:0);
+    const score=(!last?4:days>=28?3:days>=14?1:0)+((att.p+att.a)>=3&&(att.rate??100)<50?2:0);
     return {m,last,score};
   }).filter(x=>x.score>0).sort((a,b)=>b.score-a.score).slice(0,4);
 
   return `
+    ${backupReminder()}
     ${!state.settings.configured?`<div class="notice">先设置学期日期与每人探访目标，再添加成员。</div>`:''}
     <div class="hero">
       <div class="muted">${esc(state.settings.semesterName)} · 探访目标</div>
@@ -414,7 +610,7 @@ function homePage(){
     </div>
     <div class="grid">
       <div class="metric"><div class="metric-label">本周探访</div><div class="metric-value">${weekVisits} 次</div><div class="metric-foot">平均每周 ${s.perWeek.toFixed(1)} 次</div></div>
-      <div class="metric"><div class="metric-label">整体出勤率</div><div class="metric-value">${a.meetings?Math.round(a.rate)+'%':'—'}</div><div class="metric-foot">${a.meetings} 场 · ${a.p} 次出席</div></div>
+      <div class="metric"><div class="metric-label">整体出勤率</div><div class="metric-value">${a.meetings?pctText(a.p,a.p+a.a):'—'}</div><div class="metric-foot">${a.meetings} 场 · ${a.p} 人次出席</div></div>
     </div>
     <section class="section">
       <div class="head"><h2>快速记录</h2></div>
@@ -437,12 +633,63 @@ function homePage(){
   `;
 }
 
-/* 探访 */
+/* ---------- 探访 ---------- */
+function visitPulse(s){
+  if(!s.total)return `<div class="notice" data-tour="visit-pulse">还没有成员或探访目标，设置后再来看本周 / 本月提醒。</div>`;
+  const week=currentWeekRange();
+  const weekActual=state.visits.filter(v=>inside(v.date,week)).length;
+  const weekTarget=round1(s.perWeek);
+  const t=dateObj(today());
+  const mS=iso(new Date(t.getFullYear(),t.getMonth(),1));
+  const mE=iso(new Date(t.getFullYear(),t.getMonth()+1,0));
+  const monthActual=state.visits.filter(v=>inside(v.date,{start:mS,end:mE})).length;
+  const monthTarget=round1(s.perMonth);
+  return `<div class="grid" style="margin-bottom:10px" data-tour="visit-pulse">
+    ${pulseCard('本周探访',weekActual,weekTarget,shortDate(week.start)+'—'+shortDate(week.end))}
+    ${pulseCard('本月探访',monthActual,monthTarget,shortDate(mS)+'—'+shortDate(mE))}
+  </div>`;
+}
+function pulseCard(title,actual,target,range){
+  const ok=target>0&&actual+1e-9>=target;
+  const w=target>0?Math.min(100,actual/target*100):0;
+  const cls=target<=0?'':(ok?'good':'bad');
+  let tag='暂无目标';
+  if(target>0){
+    tag=ok?(actual>target?`✓ 已达标（超出 ${round1(actual-target)} 次）`:'✓ 已达标'):`✕ 未达标 · 还差 ${round1(target-actual)} 次`;
+  }
+  return `<div class="pulse-card ${cls}">
+    <div class="pulse-title"><span>${esc(title)}</span><span>${esc(range)}</span></div>
+    <div class="pulse-num">${actual}<span> / ${target} 次</span></div>
+    <div class="progress"><div style="width:${w}%"></div></div>
+    <div class="pulse-tag">${tag}</div>
+  </div>`;
+}
+function visitGroups(){
+  const groups=realCats().map(c=>({
+    id:c.id,name:c.name,
+    members:activeMembers().filter(m=>(m.categoryIds||[]).includes(c.id))
+  })).filter(g=>g.members.length);
+  const un=activeMembers().filter(m=>!hasAnyCat(m));
+  if(un.length)groups.push({id:'uncat',name:'未分类',members:un});
+  return groups;
+}
+function memberProgressRow(m){
+  const t=targetFor(m),n=memberVisits(m.id).length,done=Math.min(t,n);
+  return `<div class="item"><div class="avatar">${esc(initials(m.name))}</div>
+    <div class="item-content"><div class="name">${esc(m.name)}</div><div class="desc">实际 ${n} 次</div>
+    <div class="progress"><div style="width:${t?done/t*100:0}%"></div></div></div>
+    <div style="font-weight:750">${done}/${t}</div>
+    <button type="button" class="btn plain mini" data-action="new-visit" data-member="${esc(m.id)}">探访</button></div>`;
+}
 function visitsPage(){
   const s=stats(),vs=semesterVisits().slice().sort((a,b)=>b.date.localeCompare(a.date));
   const stars=vs.filter(v=>v.star);
+  const groups=visitGroups();
+  const shownStars=starsExpanded?stars:stars.slice(0,3);
+  const shownVisits=visitsExpanded?vs:vs.slice(0,3);
   return `
-    <div class="head" style="margin-top:7px"><div><h1>探访计划</h1><div class="muted">${esc(state.settings.semesterName)}</div></div><button type="button" class="btn primary" data-action="new-visit">＋ 记录</button></div>
+    <div class="head" style="margin-top:7px"><div><h1>探访计划</h1><div class="muted">${esc(state.settings.semesterName)}</div></div><button type="button" class="btn primary" data-action="new-visit" data-tour="new-visit">＋ 记录</button></div>
+    ${visitPulse(s)}
     <div class="card">
       <div class="between"><span class="muted">目标完成</span><span class="badge green">${Math.round(s.progress)}%</span></div>
       <div style="font-size:29px;font-weight:800;margin-top:5px">${s.done}<span class="muted"> / ${s.total} 次</span></div>
@@ -451,109 +698,282 @@ function visitsPage(){
         <div><div class="muted">尚需完成</div><div style="font-size:21px;font-weight:800">${s.remaining}</div></div>
         <div><div class="muted">平均每周 / 每月</div><div style="font-weight:750">${s.perWeek.toFixed(1)} / ${s.perMonth.toFixed(1)} 次</div></div>
       </div>
-      <div class="muted" style="margin-top:12px">默认每人每学期 ${Number(state.settings.defaultTarget)||0} 次，可在个人档案单独调整。</div>
+      <div class="muted" style="margin-top:12px">目标优先级：个人设置 &gt; 指定分类 &gt; 唯一分类 &gt; 学期默认。</div>
       <button type="button" class="text-btn" data-action="settings">修改默认目标 ›</button>
     </div>
-    <section class="section"><div class="head"><h2>成员进度</h2><span class="muted">${activeMembers().length} 位</span></div>
-      <div class="card list">${activeMembers().length?activeMembers().map(m=>{
-        const t=targetFor(m),n=memberVisits(m.id).length,done=Math.min(t,n);
-        return `<div class="item"><div class="avatar">${esc(initials(m.name))}</div><div class="item-content"><div class="name">${esc(m.name)}</div><div class="desc">${esc(categoryNames(m))} · 实际 ${n} 次</div><div class="progress"><div style="width:${t?done/t*100:0}%"></div></div></div><div style="font-weight:750">${done}/${t}</div><button type="button" class="btn plain mini" data-action="new-visit" data-member="${esc(m.id)}">探访</button></div>`;
-      }).join(''):`<div class="empty"><p>先添加成员并设置目标</p><button type="button" class="btn soft" data-action="nav" data-tab="members">添加成员</button></div>`}</div>
+    <section class="section">
+      <div class="head"><h2>成员进度</h2><span class="muted">按分类 · ${activeMembers().length} 位</span></div>
+      ${groups.length?groups.map(g=>{
+        const total=g.members.reduce((n,m)=>n+targetFor(m),0);
+        const done=g.members.reduce((n,m)=>n+Math.min(targetFor(m),memberVisits(m.id).length),0);
+        const pct=total?Math.round(done/total*100):0;
+        const isOpen=expandedGroups.has(g.id);
+        const shown=isOpen?g.members:g.members.slice(0,6);
+        const more=g.members.length-shown.length;
+        return `<details class="week" style="background:#fff">
+          <summary>
+            <div class="week-head">
+              <div><b>${esc(g.name)}</b><div class="desc">${g.members.length} 位 · 完成 ${done}/${total}</div></div>
+              <span class="muted">${pct}%　⌄</span>
+            </div>
+            <div class="progress" style="margin:8px 0 0"><div style="width:${pct}%"></div></div>
+          </summary>
+          <div class="details-body">
+            ${shown.map(memberProgressRow).join('')}
+            ${more>0?`<button type="button" class="text-btn" data-action="expand-group" data-id="${esc(g.id)}">展开全部 ${g.members.length} 位 ›</button>`:''}
+            ${isOpen&&g.members.length>6?`<button type="button" class="text-btn" data-action="collapse-group" data-id="${esc(g.id)}">收起 ›</button>`:''}
+          </div>
+        </details>`;
+      }).join(''):`<div class="card empty"><p>先添加成员并设置目标</p><button type="button" class="btn soft" data-action="nav" data-tab="members">添加成员</button></div>`}
+      <div class="muted">成员可同时属于多个分类，因此可能出现在多个分组中。</div>
     </section>
     <section class="section"><div class="head"><h2>重点跟进</h2><span class="badge orange">${stars.length}</span></div>
-      ${stars.length?`<div class="card list">${stars.map(v=>visitItem(v)).join('')}</div>`:`<div class="card empty"><p>点亮探访记录的星标，即可在这里查看</p></div>`}
+      ${stars.length?`<div class="card list">${shownStars.map(v=>visitItem(v)).join('')}</div>
+        ${stars.length>3?`<div style="text-align:center;margin-top:6px"><button type="button" class="text-btn" data-action="toggle-stars">${starsExpanded?'收起':'展开全部 '+stars.length+' 条 ›'}</button></div>`:''}`
+      :`<div class="card empty"><p>点亮探访记录的星标，即可在这里查看</p></div>`}
     </section>
     <section class="section"><div class="head"><h2>探访记录</h2><span class="muted">${vs.length} 条</span></div>
-      ${vs.length?`<div class="card list">${vs.map(v=>visitItem(v)).join('')}</div>`:`<div class="card empty"><p>尚无探访记录</p></div>`}
+      ${vs.length?`<div class="card list">${shownVisits.map(v=>visitItem(v)).join('')}</div>
+        ${vs.length>3?`<div style="text-align:center;margin-top:6px"><button type="button" class="text-btn" data-action="toggle-visits">${visitsExpanded?'收起':'展开全部 '+vs.length+' 条 ›'}</button></div>`:''}`
+      :`<div class="card empty"><p>尚无探访记录</p></div>`}
     </section>`;
 }
 function visitItem(v){
   return `<div class="item"><div class="avatar">${v.star?'★':'♡'}</div><div class="item-content">
     <div class="name">${esc(memberName(v.memberId))} ${v.star?'<span style="color:#ad813b">★</span>':''}</div>
     <div class="desc">${esc(dateText(v.date))} · ${esc(v.visitor||'未填写同工')}</div>
-    ${v.log?`<div class="desc">${esc(v.log)}</div>`:''}</div>
+    ${v.log?`<div class="desc">${fold(v.log)}</div>`:''}</div>
     <button type="button" class="btn plain mini" data-action="edit-visit" data-id="${esc(v.id)}">编辑</button>
     <button type="button" class="btn plain mini" data-action="star-visit" data-id="${esc(v.id)}">${v.star?'取消星标':'☆'}</button>
   </div>`;
 }
 
-/* 出勤：按学期开始日期自动每 7 天生成一场 */
+/* ---------- 出勤 ---------- */
 function attendancePage(){
-  syncWeeks();
-  const meetings=attendanceWeeks(),a=attendanceStats(),active=selectedMeeting();
-  const all=activeMembers();
+  if(attView==='register')syncWeeks();
   return `
-    <div class="head" style="margin-top:7px"><div><h1>出勤记录</h1><div class="muted">默认每周一场，可删除不需要的场次</div></div></div>
-    <div class="grid">
-      <div class="metric"><div class="metric-label">整体出勤率</div><div class="metric-value">${a.meetings?Math.round(a.rate)+'%':'—'}</div><div class="metric-foot">${a.meetings} 场</div></div>
-      <div class="metric"><div class="metric-label">累计出席</div><div class="metric-value">${a.p}</div><div class="metric-foot">缺席 ${a.a} · 请假 ${a.l}</div></div>
+    <div class="head" style="margin-top:7px"><div><h1>出勤记录</h1><div class="muted">每周以周日为起点自动生成</div></div></div>
+    <div class="seg" data-tour="att-view">
+      <button type="button" class="seg-btn ${attView==='register'?'active':''}" data-action="att-view" data-view="register">登记出勤</button>
+      <button type="button" class="seg-btn ${attView==='analysis'?'active':''}" data-action="att-view" data-view="analysis">区间分析</button>
     </div>
-    <section class="section">
+    ${attView==='register'?attendanceRegister():attendanceAnalysis()}
+  `;
+}
+function attendanceRegister(){
+  const meetings=attendanceWeeks(),a=attendanceStats(),active=selectedMeeting(),all=activeMembers();
+  return `
+    <div class="grid">
+      <div class="metric"><div class="metric-label">整体出勤率</div><div class="metric-value">${a.p+a.a?pctText(a.p,a.p+a.a):'—'}</div><div class="metric-foot">${a.meetings} 场 · 未标记 ${a.un} 人次</div></div>
+      <div class="metric"><div class="metric-label">累计出席</div><div class="metric-value">${a.p}</div><div class="metric-foot">未出席 ${a.a}</div></div>
+    </div>
+    <section class="section" data-tour="att-week">
       <div class="head"><h2>选择周次</h2><span class="muted">${meetings.length} 场</span></div>
       ${meetings.length?`
         <label class="field"><select data-field="active-week">
-          ${meetings.slice().reverse().map(m=>`<option value="${esc(m.weekStart)}" ${active?.id===m.id?'selected':''}>${esc(shortDate(m.date))} · ${esc(m.label||'团契聚会')}</option>`).join('')}
+          ${meetings.slice().reverse().map(m=>`<option value="${esc(m.weekStart)}" ${active?.id===m.id?'selected':''}>${esc(shortDate(m.weekStart))}（周日）</option>`).join('')}
         </select></label>
       `:`<div class="card empty"><p>请先在设置中确认学期日期</p><button type="button" class="btn soft" data-action="settings">设置日期</button></div>`}
     </section>
     ${active?`
     <div class="card">
-      <div class="between"><div><h2>${esc(active.label||'团契聚会')}</h2><div class="muted">${esc(dateText(active.date))}</div></div><button type="button" class="btn danger mini" data-action="delete-meeting" data-id="${esc(active.id)}">删除本场</button></div>
+      <div class="between"><div><h2>聚会</h2><div class="muted">${esc(dateText(active.weekStart))}（周日）起这一周</div></div><button type="button" class="btn danger mini" data-action="delete-meeting" data-id="${esc(active.id)}">删除本场</button></div>
       <label class="field" style="margin-top:14px">聚会日期（可修改）<input type="date" data-field="meeting-date" data-id="${esc(active.id)}" value="${esc(active.date)}"></label>
-      <label class="field">聚会名称<input data-field="meeting-label" data-id="${esc(active.id)}" value="${esc(active.label||'团契聚会')}"></label>
       <div class="grid">
         <div><div class="muted">出席</div><b>${Object.values(active.records||{}).filter(v=>v==='present').length}</b></div>
-        <div><div class="muted">缺席</div><b>${Object.values(active.records||{}).filter(v=>v==='absent').length}</b></div>
+        <div><div class="muted">未出席</div><b>${Object.values(active.records||{}).filter(v=>v==='absent').length}</b></div>
       </div>
     </div>
-    <div class="card list">${all.length?all.map(m=>{
-      const v=active.records?.[m.id]||'unmarked';
+    <div class="card list" data-tour="att-list">${all.length?all.map(m=>{
+      const v=active.records?.[m.id];
       return `<div class="item" style="align-items:flex-start"><div class="avatar">${esc(initials(m.name))}</div><div class="item-content">
         <div class="name">${esc(m.name)}</div><div class="desc">${esc(categoryNames(m))}</div>
         <div class="statuses">
           <button type="button" class="status ${v==='present'?'active':''}" data-action="attendance-status" data-meeting="${esc(active.id)}" data-member="${esc(m.id)}" data-status="present">出席</button>
-          <button type="button" class="status absent ${v==='absent'?'active':''}" data-action="attendance-status" data-meeting="${esc(active.id)}" data-member="${esc(m.id)}" data-status="absent">缺席</button>
-          <button type="button" class="status leave ${v==='leave'?'active':''}" data-action="attendance-status" data-meeting="${esc(active.id)}" data-member="${esc(m.id)}" data-status="leave">请假</button>
+          <button type="button" class="status absent ${v==='absent'?'active':''}" data-action="attendance-status" data-meeting="${esc(active.id)}" data-member="${esc(m.id)}" data-status="absent">未出席</button>
+          <button type="button" class="status ${!v?'active':''}" data-action="attendance-status" data-meeting="${esc(active.id)}" data-member="${esc(m.id)}" data-status="">未标记</button>
         </div>
       </div></div>`;
     }).join(''):`<div class="empty"><p>先添加成员，再登记出勤</p><button type="button" class="btn soft" data-action="nav" data-tab="members">添加成员</button></div>`}</div>
-    `:''}
-    <section class="section"><div class="head"><h2>成员出勤统计</h2></div>
-      <div class="card list">${all.length?all.map(m=>{
-        const x=memberAttendance(m.id);
-        return `<div class="item"><div class="avatar">${esc(initials(m.name))}</div><div class="item-content"><div class="name">${esc(m.name)}</div><div class="desc">出席 ${x.p} · 缺席 ${x.a} · 请假 ${x.l}</div></div><b>${x.p+x.a?Math.round(x.rate)+'%':'—'}</b></div>`;
-      }).join(''):`<div class="empty"><p>尚无成员</p></div>`}</div>
+    `:''}`;
+}
+function attendanceAnalysis(){
+  const r=semester();
+  const start=analysisRange.start||r.start;
+  const end=analysisRange.end||r.end;
+  const d=analysisData(start,end);
+  const ag=analysisGroups(d);
+  const sortedPer=d.per.slice().sort((a,b)=>(b.rate??-1)-(a.rate??-1));
+  const shownPer=perRateExpanded?sortedPer:sortedPer.slice(0,5);
+  return `
+    <div class="card">
+      <div class="muted" style="margin-bottom:6px">选择查询区间（含首尾两天）</div>
+      <div class="field-grid">
+        <label class="field">开始日期<input type="date" data-field="analysis-start" value="${esc(start)}"></label>
+        <label class="field">结束日期<input type="date" data-field="analysis-end" value="${esc(end)}"></label>
+      </div>
+      <div class="chips" style="padding-bottom:0">
+        <button type="button" class="chip" data-action="analysis-quick" data-range="week">本周</button>
+        <button type="button" class="chip" data-action="analysis-quick" data-range="month">本月</button>
+        <button type="button" class="chip" data-action="analysis-quick" data-range="semester">本学期</button>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="metric"><div class="metric-label">整体出勤率</div><div class="metric-value">${d.rate==null?'—':d.rate.toFixed(1)+'%'}</div><div class="metric-foot">出席 ${d.P} / 应到 ${d.P+d.A} 人次</div></div>
+      <div class="metric"><div class="metric-label">未标记</div><div class="metric-value">${d.U}</div><div class="metric-foot">已排除出分母</div></div>
+    </div>
+    <div class="grid" style="margin-top:10px">
+      <div class="metric"><div class="metric-label">场次</div><div class="metric-value">${d.ms.length}</div><div class="metric-foot">${esc(shortDate(start))}—${esc(shortDate(end))}</div></div>
+      <div class="metric"><div class="metric-label">未出席</div><div class="metric-value">${d.A}</div><div class="metric-foot">人次</div></div>
+    </div>
+    <section class="section">
+      <div class="head"><h2>每周出勤趋势</h2><span class="muted">%</span></div>
+      <div class="card">
+        ${d.weeks.length?`
+          <div class="chart-bars">
+            ${d.weeks.map(w=>{
+              const v=w.rate;
+              const h=v==null?2:Math.max(2,Math.min(100,v));
+              return `<div class="bar-col">
+                <div class="bar ${v==null?'empty':''}" style="height:${h}%">
+                  <span class="bar-val">${v==null?'—':v.toFixed(1)}</span>
+                </div>
+                <div class="bar-x">${esc(w.label)}</div>
+              </div>`;
+            }).join('')}
+          </div>
+          <div class="legend"><span><i style="background:#285c46"></i>出勤率</span><span><i style="background:#dfe5de"></i>无记录</span></div>
+        `:`<div class="empty"><p>该区间没有聚会记录</p></div>`}
+      </div>
+    </section>
+    <section class="section">
+      <div class="head"><h2>每人出勤率</h2><span class="muted">${d.per.length} 位</span></div>
+      <div class="card">
+        ${sortedPer.length?shownPer.map(x=>{
+          const v=x.rate;
+          const w=v==null?0:Math.max(0,Math.min(100,v));
+          return `<div class="hbar">
+            <div class="hbar-name">${esc(x.m.name)}</div>
+            <div class="hbar-track"><div class="hbar-fill ${v!=null&&v<60?'low':''}" style="width:${w}%"></div></div>
+            <div class="hbar-val">${v==null?'—':v.toFixed(1)+'%'}</div>
+          </div>`;
+        }).join(''):'<div class="empty"><p>暂无成员</p></div>'}
+        <div class="legend"><span>出席 ${d.P} · 未出席 ${d.A} · 未标记 ${d.U}</span></div>
+        ${sortedPer.length>5?`<div style="text-align:center;margin-top:4px"><button type="button" class="text-btn" data-action="toggle-per-rate">${perRateExpanded?'收起':'展开全部 '+sortedPer.length+' 位 ›'}</button></div>`:''}
+      </div>
+    </section>
+    <section class="section">
+      <div class="head"><h2>明细（按分类）</h2><span class="muted">${d.per.length} 位成员</span></div>
+      ${ag.length?ag.map(g=>`<details class="week" style="background:#fff">
+        <summary>
+          <div class="week-head">
+            <div><b>${esc(g.name)}</b><div class="desc">${g.members.length} 位 · 出席 ${g.P} · 未出席 ${g.A}</div></div>
+            <span class="muted">${g.rate==null?'—':g.rate.toFixed(1)+'%'}　⌄</span>
+          </div>
+          <div class="progress" style="margin:8px 0 0"><div style="width:${g.rate==null?0:g.rate}%"></div></div>
+        </summary>
+        <div class="details-body scroll-body">
+          ${g.members.map(x=>`<div class="item">
+            <div class="avatar">${esc(initials(x.m.name))}</div>
+            <div class="item-content"><div class="name">${esc(x.m.name)}</div><div class="desc">出席 ${x.p} · 未出席 ${x.a} · 未标记 ${x.u}</div></div>
+            <b>${x.rate==null?'—':x.rate.toFixed(1)+'%'}</b>
+          </div>`).join('')}
+        </div>
+      </details>`).join(''):`<div class="card empty"><p>该区间暂无数据</p></div>`}
+      <div class="muted">成员可同时属于多个分类，可能出现在多个分组中。展开后超过 5 位可向下滑动查看。</div>
     </section>`;
 }
 
-/* 成员：每人可以属于多个分类 */
-function membersPage(){
+/* ---------- 成员 ---------- */
+function filteredMembers(){
   let list=state.members.filter(m=>archivedFilter?m.archived:!m.archived);
-  if(categoryFilter!=='all')list=list.filter(m=>(m.categoryIds||[]).includes(categoryFilter));
+  if(categoryFilter!=='all'){
+    if(categoryFilter==='uncategorized'){
+      list=list.filter(m=>!hasAnyCat(m));
+    }else{
+      list=list.filter(m=>(m.categoryIds||[]).includes(categoryFilter));
+    }
+  }
   const q=query.trim().toLowerCase();
   if(q)list=list.filter(m=>[m.name,m.phone,m.school,m.className,m.dorm,m.note,categoryNames(m)].some(v=>String(v||'').toLowerCase().includes(q)));
+  const dir=memberSortDir==='asc'?1:-1;
+  const rateOf=m=>{const x=memberAttendance(m.id);return x.rate==null?-1:x.rate};
+  const visited=m=>memberVisits(m.id).length;
+  const targetRate=m=>{const t=targetFor(m);return t?Math.min(t,visited(m))/t*100:0};
+  const latest=m=>latestVisit(m.id)?.date||'';
+  list=list.slice().sort((a,b)=>{
+    let r=0;
+    switch(memberSort){
+      case 'visits':r=visited(a)-visited(b);break;
+      case 'visitRate':r=targetRate(a)-targetRate(b);break;
+      case 'attendRate':r=rateOf(a)-rateOf(b);break;
+      case 'present':r=memberAttendance(a.id).p-memberAttendance(b.id).p;break;
+      case 'recent':r=(latest(a)||'').localeCompare(latest(b)||'');break;
+      default:r=0;
+    }
+    if(r!==0)return r*dir;
+    return a.name.localeCompare(b.name,'zh');
+  });
+  return list;
+}
+function memberListHTML(){
+  const list=filteredMembers();
+  if(!list.length){
+    const hasQuery=query.trim().length>0;
+    if(hasQuery){
+      return `<div class="card empty"><div class="empty-icon">♙</div><p>没有找到匹配成员</p><button type="button" class="btn soft" data-action="new-member">添加成员</button></div>`;
+    }
+    const isEmptyCat=categoryFilter!=='all'&&categoryFilter!=='uncategorized'&&!archivedFilter;
+    if(isEmptyCat&&state.members.some(m=>!m.archived)){
+      return `<div class="card empty"><div class="empty-icon">♙</div><p>这个分类还没有成员</p><button type="button" class="btn soft" data-action="pick-members-from-page" data-id="${esc(categoryFilter)}">选择成员</button></div>`;
+    }
+    return `<div class="card empty"><div class="empty-icon">♙</div><p>还没有成员档案</p><button type="button" class="btn soft" data-action="new-member">添加成员</button></div>`;
+  }
+  return `<div class="card list">${list.map(m=>{
+    const t=targetFor(m),n=memberVisits(m.id).length,a=memberAttendance(m.id),last=latestVisit(m.id);
+    return `<button type="button" class="item" style="width:100%;text-align:left;background:white;border:0" data-action="profile" data-id="${esc(m.id)}">
+      <div class="avatar">${esc(initials(m.name))}</div><div class="item-content">
+      <div class="name">${esc(m.name)} ${m.archived?'<span class="badge">已归档</span>':''}</div>
+      <div class="desc">${esc(categoryNames(m))}</div>
+      <div class="desc">探访 ${Math.min(t,n)}/${t}（实际 ${n}） · 出勤 ${a.p+a.a?pctText(a.p,a.p+a.a):'—'} · ${last?esc(shortDate(last.date)):'暂无探访'}</div>
+      </div><span>›</span>
+    </button>`;
+  }).join('')}</div>`;
+}
+function membersPage(){
+  const cats=realCats();
   return `
-    <div class="head" style="margin-top:7px"><div><h1>成员档案</h1><div class="muted">${activeMembers().length} 位在册成员</div></div><button type="button" class="btn primary" data-action="new-member">＋ 添加</button></div>
-    ${!state.members.length?`<div class="notice">先添加成员。分类可以自己创建，每位成员也可以同时属于多个分类。</div>`:''}
+    <div class="head" style="margin-top:7px"><div><h1>成员档案</h1><div class="muted">${activeMembers().length} 位在册成员</div></div><button type="button" class="btn primary" data-action="new-member" data-tour="add-member">＋ 添加</button></div>
+    ${!state.members.length?`<div class="notice">先添加成员。分类可自定义；未加入任何分类的成员会自动归入「未分类」。</div>`:''}
     <div class="search"><input data-field="search" placeholder="搜索姓名、电话、学校…" value="${esc(query)}"></div>
-    <div class="chips">
-      <button type="button" class="chip ${categoryFilter==='all'?'active':''}" data-action="category-filter" data-id="all">全部</button>
-      ${state.categories.map(c=>`<button type="button" class="chip ${categoryFilter===c.id?'active':''}" data-action="category-filter" data-id="${esc(c.id)}">${esc(c.name)}</button>`).join('')}
-      <button type="button" class="chip ${archivedFilter?'active':''}" data-action="archived">已归档</button>
+    <div data-tour="member-tools">
+      <div class="chips">
+        <button type="button" class="chip ${categoryFilter==='all'?'active':''}" data-action="category-filter" data-id="all">全部</button>
+        ${cats.map(c=>`<button type="button" class="chip ${categoryFilter===c.id?'active':''}" data-action="category-filter" data-id="${esc(c.id)}">${esc(c.name)}</button>`).join('')}
+        <button type="button" class="chip ${categoryFilter==='uncategorized'?'active':''}" data-action="category-filter" data-id="uncategorized">未分类</button>
+        <button type="button" class="chip ${archivedFilter?'active':''}" data-action="archived">已归档</button>
+      </div>
+      <div style="margin:-4px 0 10px">
+        <button type="button" class="btn plain mini" data-action="manage-categories">⚙ 管理分类</button>
+      </div>
     </div>
-    <div class="card list">${list.length?list.map(m=>{
-      const t=targetFor(m),n=memberVisits(m.id).length,a=memberAttendance(m.id),last=latestVisit(m.id);
-      return `<button type="button" class="item" style="width:100%;text-align:left;background:white;border:0" data-action="profile" data-id="${esc(m.id)}">
-        <div class="avatar">${esc(initials(m.name))}</div><div class="item-content">
-        <div class="name">${esc(m.name)} ${m.archived?'<span class="badge">已归档</span>':''}</div>
-        <div class="desc">${esc(categoryNames(m))}</div>
-        <div class="desc">探访 ${Math.min(t,n)}/${t} · 出勤 ${a.total?Math.round(a.rate)+'%':'—'} · ${last?esc(shortDate(last.date)):'暂无探访'}</div>
-        </div><span>›</span>
-      </button>`;
-    }).join(''):`<div class="empty"><div class="empty-icon">♙</div><p>${q?'没有找到匹配成员':'还没有成员档案'}</p><button type="button" class="btn soft" data-action="new-member">添加成员</button></div>`}</div>`;
+    <div class="between" style="margin:2px 0 10px">
+      <label class="field" style="margin:0;flex:1;min-width:0;font-size:11px">排序
+        <select data-field="member-sort" style="margin-top:3px">
+          <option value="default" ${memberSort==='default'?'selected':''}>默认</option>
+          <option value="visits" ${memberSort==='visits'?'selected':''}>探访次数</option>
+          <option value="visitRate" ${memberSort==='visitRate'?'selected':''}>探访完成率</option>
+          <option value="attendRate" ${memberSort==='attendRate'?'selected':''}>出勤率</option>
+          <option value="present" ${memberSort==='present'?'selected':''}>出席次数</option>
+          <option value="recent" ${memberSort==='recent'?'selected':''}>最近探访</option>
+        </select>
+      </label>
+      <button type="button" class="btn plain mini" data-action="toggle-sort-dir" style="margin-top:18px">${memberSortDir==='desc'?'↓ 降序':'↑ 升序'}</button>
+    </div>
+    <div id="member-list">${memberListHTML()}</div>`;
 }
 
-/* 每周日志，按月份与周次折叠 */
+/* ---------- 周报 ---------- */
 function weeklyPage(){
   const weeks=buildWeeks(semester()),todayStr=today();
   const groups={};
@@ -562,20 +982,21 @@ function weeklyPage(){
   const curMonth=cur?.start.slice(0,7);
   return `
     <div class="head" style="margin-top:7px"><div><h1>每周日志</h1><div class="muted">自动汇总探访与聚会记录</div></div><button type="button" class="btn soft" data-action="current-week">本周</button></div>
+    <div data-tour="weekly">
     ${Object.keys(groups).length?Object.entries(groups).map(([month,ws])=>`
-      <details ${month===curMonth?'open':''}>
-        <summary><div class="month-head"><span>${Number(month.slice(5,7))} 月</span><span class="muted">${ws.length} 周　⌄</span></div></summary>
+      <details>
+        <summary ${month===curMonth?'style="background:#eef5ef"':''}><div class="month-head"><span>${Number(month.slice(5,7))} 月 ${month===curMonth?'<span class="badge green">本周</span>':''}</span><span class="muted">${ws.length} 周　⌄</span></div></summary>
         <div class="details-body">
           ${ws.map(w=>{
             const log=state.weeklyLogs.find(l=>l.weekStart===w.start)||{};
             const vs=state.visits.filter(v=>inside(v.date,w));
             const ms=state.meetings.filter(m=>inside(m.weekStart||m.date,w));
             const active=inside(todayStr,w);
-            return `<details class="week" ${active?'open':''}>
+            return `<details class="week">
               <summary><div class="week-head"><div><b>${esc(shortDate(w.start))}—${esc(shortDate(w.end))}</b> ${active?'<span class="badge green">本周</span>':''}<div class="desc">探访 ${vs.length} 次 · 聚会 ${ms.length} 场</div></div><span class="muted">${log.summary?'已记录':'待填写'}　⌄</span></div></summary>
               <div class="details-body">
                 ${vs.length?`<div class="muted">本周探访</div>${vs.map(v=>`<div class="item"><div class="avatar">${v.star?'★':'♡'}</div><div class="item-content"><div class="name">${esc(memberName(v.memberId))}</div><div class="desc">${esc(shortDate(v.date))} · ${esc(v.visitor||'')}</div></div></div>`).join('')}`:`<div class="muted">本周尚无探访记录</div>`}
-                ${ms.length?`<div class="muted" style="margin-top:10px">本周聚会</div>${ms.map(m=>`<div class="desc">${esc(shortDate(m.date))} · ${esc(m.label)}</div>`).join('')}`:''}
+                ${ms.length?`<div class="muted" style="margin-top:10px">本周聚会</div>${ms.map(m=>`<div class="desc">${esc(shortDate(m.date))} · ${esc(m.label||'聚会')}</div>`).join('')}`:''}
                 <form data-form="save-week" data-start="${esc(w.start)}" class="week-form">
                   <label class="field">工作总结<textarea name="summary" placeholder="本周完成了什么？">${esc(log.summary||'')}</textarea></label>
                   <label class="field">需要跟进<textarea name="concerns" placeholder="哪些成员需要继续关怀？">${esc(log.concerns||'')}</textarea></label>
@@ -587,20 +1008,23 @@ function weeklyPage(){
           }).join('')}
         </div>
       </details>
-    `).join(''):`<div class="card empty"><p>请先设置学期日期</p><button type="button" class="btn soft" data-action="settings">设置日期</button></div>`}`;
+    `).join(''):`<div class="card empty"><p>请先设置学期日期</p><button type="button" class="btn soft" data-action="settings">设置日期</button></div>`}
+    </div>`;
 }
 
-/* 设置：首次打开直接进入这里 */
+/* ---------- 设置 ---------- */
 function settingsPage(){
   const s=state.settings;
+  const cats=realCats();
   return `
     <div style="margin-top:7px"><h1>设置</h1><div class="muted">学期、分类与数据迁移</div></div>
     ${!s.configured?`
       <div class="card" style="margin-top:15px">
         <h2>欢迎使用同行</h2>
         <p class="muted" style="margin-top:8px">① 设置学期　② 添加成员　③ 记录探访与出勤</p>
+        <button type="button" class="btn soft block" data-action="start-tour" style="margin-top:10px">▶ 观看新手教程</button>
       </div>`:''}
-    <form data-form="settings" class="card" style="margin-top:15px">
+    <form data-form="settings" class="card" style="margin-top:15px" data-tour="semester">
       <h2 style="margin-bottom:15px">学期设置</h2>
       <label class="field">学期名称<input name="semesterName" required value="${esc(s.semesterName)}"></label>
       <div class="field-grid">
@@ -608,26 +1032,37 @@ function settingsPage(){
         <label class="field">结束日期<input type="date" name="end" required value="${esc(s.endDate)}"></label>
       </div>
       <label class="field">每人默认探访目标（次/学期）<input type="number" min="0" max="999" name="defaultTarget" required value="${esc(s.defaultTarget)}"></label>
-      <div class="muted" style="margin-bottom:12px">单个成员可以设置独立目标。修改学期后，出勤场次会按每周一次自动调整。</div>
+      <div class="muted" style="margin-bottom:12px">出勤场次按每周日自动生成。修改学期后会自动补齐新场次，已删除的场次不会重建。</div>
       <button type="submit" class="btn primary block">保存设置</button>
     </form>
 
-    <section class="section">
-      <div class="head"><h2>成员分类</h2><button type="button" class="btn soft mini" data-action="new-category">＋ 添加分类</button></div>
+    <section class="section" data-tour="categories">
+      <div class="head"><h2>成员分类与分类目标</h2><button type="button" class="btn soft mini" data-action="new-category">＋ 添加分类</button></div>
       <div class="card list">
-        ${state.categories.map(c=>`<div class="item"><div class="item-content"><div class="name">${esc(c.name)}</div><div class="desc">${state.members.filter(m=>(m.categoryIds||[]).includes(c.id)&&!m.archived).length} 位成员</div></div>
+        ${cats.map(c=>`<div class="item">
+          <div class="item-content"><div class="name">${esc(c.name)}</div><div class="desc">${state.members.filter(m=>(m.categoryIds||[]).includes(c.id)&&!m.archived).length} 位成员</div></div>
+          <label class="field" style="margin:0;width:74px;font-size:10px">目标(次)<input type="number" min="0" max="999" data-field="cat-target" data-id="${esc(c.id)}" value="${c.target==null?'':esc(c.target)}" placeholder="默认" style="padding:7px 8px;font-size:14px"></label>
           <button type="button" class="btn plain mini" data-action="edit-category" data-id="${esc(c.id)}">改名</button>
-          ${c.id!=='uncategorized'?`<button type="button" class="btn danger mini" data-action="delete-category" data-id="${esc(c.id)}">删除</button>`:''}
+          <button type="button" class="btn danger mini" data-action="delete-category" data-id="${esc(c.id)}">删除</button>
         </div>`).join('')}
+        <div class="item">
+          <div class="item-content"><div class="name">未分类</div><div class="desc">${state.members.filter(m=>!hasAnyCat(m)&&!m.archived).length} 位成员</div></div>
+          <span class="badge">自动</span>
+        </div>
       </div>
-      <div class="muted">分类只用于整理成员，不设分类目标。一个成员可以属于多个分类。</div>
+      <div class="muted">分类目标留空表示跟随学期默认。成员页点「⚙ 管理分类」可批量把成员加入分类。</div>
     </section>
 
-    <section class="section">
+    <section class="section" data-tour="backup">
       <div class="head"><h2>备份与恢复</h2></div>
       <div class="card">
-        <div class="notice">备份码用于跨设备迁移。它不是加密密码：持有备份码的人可能读取其中的资料，请勿公开分享。资料平时保存在本机浏览器。</div>
-        <button type="button" class="btn primary block" data-action="export">生成并复制备份码</button>
+        <div class="notice warn"><b>资料完全保存在本机浏览器</b>，不会上传任何服务器。清理浏览器数据、换设备或卸载应用都会导致资料丢失，且<b>无法找回</b>。请定期生成备份码并妥善保存。</div>
+        <div class="muted" style="line-height:1.9">
+          当前资料：${state.members.length} 位成员 · ${state.visits.length} 条探访 · ${state.meetings.length} 场聚会 · ${state.weeklyLogs.length} 篇周报 · ${state.categories.length} 个分类<br>
+          备份码包含以上全部内容及学期设置，可完整迁移到新设备。<br>
+          上次备份：${s.lastBackupAt?esc(dateText(s.lastBackupAt)):'从未备份'}
+        </div>
+        <button type="button" class="btn primary block" data-action="export" style="margin-top:10px">生成并复制备份码</button>
         <label class="field" style="margin-top:13px">备份码<textarea id="backup" rows="5" placeholder="生成后显示在这里，也可以粘贴其他设备的备份码"></textarea></label>
         <button type="button" class="btn soft block" data-action="import">恢复备份</button>
       </div>
@@ -636,15 +1071,18 @@ function settingsPage(){
     <details>
       <summary><b>使用帮助</b></summary>
       <div class="details-body">
-        <p class="muted">探访：选择成员、填写日期和日志，可标星跟进。</p>
-        <p class="muted">出勤：系统按学期每周生成一场，取消的场次可以删除。</p>
-        <p class="muted">周报：按月份和周次折叠，探访和聚会记录会自动汇总。</p>
+        <p class="muted">探访：选择成员、填写日期和日志，可标星跟进；同工可从成员中选择。</p>
+        <p class="muted">出勤：按学期每周日生成一场，只记录出席/未出席；未标记不计入出勤率。</p>
+        <p class="muted">分析：出勤页「区间分析」自选起止日期，查看趋势、每人出勤率与按分类明细。</p>
+        <p class="muted">周报：按月份和周次折叠，探访与聚会记录会自动汇总。</p>
         <p class="muted">迁移：旧设备生成备份码，新设备粘贴并恢复。恢复会覆盖新设备现有资料。</p>
       </div>
-    </details>`;
+    </details>
+    <button type="button" class="btn plain block" data-action="start-tour" style="margin-top:12px">▶ 重新观看新手教程</button>
+  `;
 }
 
-/* 弹窗：只有点击关闭按钮或背景才关闭 */
+/* ---------- 弹窗 ---------- */
 function openModal(html){
   const root=$('#modal');
   root.innerHTML=`<div class="modal-overlay"></div><section class="sheet"><div class="handle"></div>${html}</section>`;
@@ -659,17 +1097,106 @@ $('#modal').addEventListener('click',e=>{
   if(e.target.classList.contains('modal-overlay'))closeModal();
 });
 
+/* 分类管理 */
+function categoryManage(){
+  const cats=realCats();
+  openModal(`
+    <div class="sheet-head"><h2>管理分类</h2><button type="button" class="close" data-action="close">×</button></div>
+    <div class="notice">点击「选择成员」可批量把已有成员加入该分类；已在该分类的成员会显示「已加入」，不会重复添加。</div>
+    <div class="card list">
+      ${cats.length?cats.map(c=>{
+        const n=state.members.filter(m=>(m.categoryIds||[]).includes(c.id)&&!m.archived).length;
+        return `<div class="item" style="flex-wrap:wrap">
+          <div class="item-content"><div class="name">${esc(c.name)}</div><div class="desc">${n} 位成员 · 目标 ${c.target==null?'跟随默认':esc(c.target)+' 次'}</div></div>
+          <div class="row" style="gap:6px;flex-wrap:wrap">
+            <button type="button" class="btn soft mini" data-action="pick-members" data-id="${esc(c.id)}">选择成员</button>
+            <button type="button" class="btn plain mini" data-action="edit-category" data-id="${esc(c.id)}">改名/目标</button>
+            <button type="button" class="btn danger mini" data-action="delete-category" data-id="${esc(c.id)}">删除</button>
+          </div>
+        </div>`;
+      }).join(''):'<div class="empty"><p>还没有分类</p></div>'}
+      <div class="item">
+        <div class="item-content"><div class="name">未分类</div><div class="desc">${state.members.filter(m=>!hasAnyCat(m)&&!m.archived).length} 位成员 · 自动归类</div></div>
+        <span class="badge">只读</span>
+      </div>
+    </div>
+    <button type="button" class="btn primary block" data-action="new-category" style="margin-top:12px">＋ 新建分类</button>
+  `);
+}
+function pickListHTML(catId,q){
+  const s=(q||'').trim().toLowerCase();
+  const list=state.members.filter(m=>!m.archived).filter(m=>!s||[m.name,m.phone,m.school,m.className].some(v=>String(v||'').toLowerCase().includes(s)));
+  if(!list.length)return '<div class="empty"><p>没有匹配成员</p></div>';
+  return list.map(m=>{
+    const inCat=(m.categoryIds||[]).includes(catId);
+    const on=selectedPick.has(m.id);
+    const cats=memberCats(m);
+    return `<button type="button" class="pick-item ${on?'on':''}" ${inCat?'disabled':''} data-pick-member="${esc(m.id)}">
+      <div class="avatar" style="width:32px;height:32px;flex:0 0 32px;font-size:14px;border-radius:9px">${esc(initials(m.name))}</div>
+      <div class="item-content">
+        <div class="name">${esc(m.name)} ${cats.map(c=>`<span class="badge" style="margin-left:2px">${esc(c.name)}</span>`).join('')}</div>
+      </div>
+      <span style="font-size:12px;font-weight:700;color:${inCat?'var(--muted)':'var(--green)'}">${inCat?'已加入':(on?'已选':'选择')}</span>
+    </button>`;
+  }).join('');
+}
+function pickMembersForCategory(catId){
+  const c=state.categories.find(x=>x.id===catId);
+  if(!c)return;
+  selectedPick=new Set();
+  openModal(`
+    <div class="sheet-head"><h2>选择成员 · ${esc(c.name)}</h2><button type="button" class="close" data-action="close">×</button></div>
+    <div class="notice">名字后的徽章表示该成员已加入的其他分类。已在本分类的成员显示「已加入」且不可重复选择。</div>
+    <input id="pick-search" placeholder="搜索姓名、电话、学校…">
+    <div id="pick-list" class="pick-list">${pickListHTML(catId,'')}</div>
+    <div class="row" style="margin-top:12px">
+      <button type="button" class="btn plain flex1" data-action="manage-categories">返回</button>
+      <button type="button" class="btn primary flex1" data-action="save-pick" data-id="${esc(catId)}">加入分类</button>
+    </div>
+  `);
+}
+
+function updateTargetPreview(form){
+  const box=form.querySelector('#target-preview');
+  if(!box)return;
+  const ids=[...form.querySelectorAll('input[name="categoryIds"]:checked')].map(x=>x.value);
+  const overrideVal=form.querySelector('[name="targetOverride"]').value;
+  const defaultTarget=Math.max(0,Number(state.settings.defaultTarget)||0);
+  const cats=ids.map(id=>state.categories.find(c=>c.id===id)).filter(c=>c&&c.target!=null&&c.target!=='');
+  let html='';
+  if(overrideVal!==''){
+    html=`生效目标：<b>${Math.max(0,Number(overrideVal)||0)} 次</b>（个人设置）`;
+  }else if(!cats.length){
+    html=`生效目标：<b>${defaultTarget} 次</b>（学期默认）`;
+  }else if(cats.length===1){
+    html=`生效目标：<b>${Math.max(0,Number(cats[0].target)||0)} 次</b>（分类「${esc(cats[0].name)}」）`;
+  }else{
+    const uniq=[...new Set(cats.map(c=>Number(c.target)||0))];
+    if(uniq.length===1){
+      html=`生效目标：<b>${uniq[0]} 次</b>（多个分类，目标一致）`;
+    }else{
+      const oldSel=form.querySelector('[name="targetCategoryId"]')?.value||'';
+      html=`<div style="margin-bottom:6px">多个分类目标不同，请选择以哪个分类为准：</div>
+        <select name="targetCategoryId">
+          ${cats.map(c=>`<option value="${esc(c.id)}" ${oldSel===c.id?'selected':''}>分类「${esc(c.name)}」 → ${Math.max(0,Number(c.target)||0)} 次</option>`).join('')}
+        </select>`;
+    }
+  }
+  box.innerHTML=html;
+}
 function memberForm(id=''){
   const m=state.members.find(x=>x.id===id)||{};
-  const cats=m.categoryIds||['uncategorized'];
+  const cats=(m.categoryIds||[]).filter(cid=>state.categories.some(c=>c.id===cid&&!c.virtual));
+  const list=realCats();
   openModal(`
     <div class="sheet-head"><h2>${id?'编辑成员':'添加成员'}</h2><button type="button" class="close" data-action="close">×</button></div>
     <form data-form="member" data-id="${esc(id)}">
       <label class="field">姓名 *<input name="name" required value="${esc(m.name||'')}" placeholder="成员姓名"></label>
-      <label class="field">成员分类（可多选）</label>
-      <div class="checks">${state.categories.map(c=>`<label class="check-chip"><input type="checkbox" name="categoryIds" value="${esc(c.id)}" ${cats.includes(c.id)?'checked':''}>${esc(c.name)}</label>`).join('')}</div>
+      <label class="field">成员分类（可多选，不选即未分类）</label>
+      <div class="checks">${list.length?list.map(c=>`<label class="check-chip"><input type="checkbox" name="categoryIds" value="${esc(c.id)}" ${cats.includes(c.id)?'checked':''} data-cat-change>${esc(c.name)}</label>`).join(''):'<span class="muted">还没有分类，可在设置里添加</span>'}</div>
+      <div id="target-preview" class="notice" style="margin-top:14px"></div>
       <div class="field-grid" style="margin-top:14px">
-        <label class="field">个人探访目标<input name="targetOverride" type="number" min="0" max="999" value="${m.targetOverride==null?'':esc(m.targetOverride)}" placeholder="跟随默认目标"></label>
+        <label class="field">个人探访目标<input name="targetOverride" type="number" min="0" max="999" value="${m.targetOverride==null?'':esc(m.targetOverride)}" placeholder="跟随分类/默认"></label>
         <label class="field">受洗情况<select name="baptized"><option value="unknown" ${!m.baptized||m.baptized==='unknown'?'selected':''}>未记录</option><option value="yes" ${m.baptized==='yes'?'selected':''}>已受洗</option><option value="no" ${m.baptized==='no'?'selected':''}>未受洗</option></select></label>
       </div>
       <div class="field-grid">
@@ -685,24 +1212,103 @@ function memberForm(id=''){
       <button type="submit" class="btn primary block">保存成员</button>
     </form>
   `);
+  const form=document.querySelector('form[data-form="member"]');
+  if(form){
+    form.querySelectorAll('[data-cat-change]').forEach(el=>el.addEventListener('change',()=>updateTargetPreview(form)));
+    form.querySelector('[name="targetOverride"]').addEventListener('input',()=>updateTargetPreview(form));
+    updateTargetPreview(form);
+  }
 }
+
+function visitorPickerHTML(q){
+  const s=(q||'').trim().toLowerCase();
+  const counts=visitorCounts();
+  const list=activeMembers()
+    .filter(m=>!s||[m.name,m.phone,m.school].some(v=>String(v||'').toLowerCase().includes(s)))
+    .sort((a,b)=>{
+      const ca=counts[a.name]||0,cb=counts[b.name]||0;
+      if(ca!==cb)return cb-ca;
+      return a.name.localeCompare(b.name,'zh');
+    });
+  if(!list.length)return '<div class="empty"><p>没有匹配成员</p></div>';
+  return list.map(m=>{
+    const n=counts[m.name]||0;
+    return `<button type="button" class="pick-item" data-pick-visitor="${esc(m.name)}">
+      <div class="avatar" style="width:32px;height:32px;flex:0 0 32px;font-size:14px;border-radius:9px">${esc(initials(m.name))}</div>
+      <div class="item-content"><div class="name">${esc(m.name)}</div><div class="desc">${n?`历史同工 ${n} 次`:(m.phone?esc(m.phone):'')}</div></div>
+      <span style="color:var(--ink);font-weight:700">＋</span>
+    </button>`;
+  }).join('');
+}
+
+function visitMemberListHTML(q, selectedId){
+  const s=(q||'').trim().toLowerCase();
+  const counts=visitCountsByMember();
+  const latest=latestByMember();
+  const list=activeMembers()
+    .filter(m=>!s||[m.name,m.phone,m.school,m.className].some(v=>String(v||'').toLowerCase().includes(s)))
+    .sort((a,b)=>{
+      const ca=counts[a.id]||0,cb=counts[b.id]||0;
+      if(ca!==cb)return cb-ca;
+      const la=latest[a.id]||'',lb=latest[b.id]||'';
+      if(la!==lb)return lb.localeCompare(la);
+      return a.name.localeCompare(b.name,'zh');
+    });
+  if(!list.length)return '<div class="empty"><p>没有匹配成员</p></div>';
+  return list.map(m=>{
+    const on=m.id===selectedId;
+    const n=counts[m.id]||0;
+    return `<button type="button" class="pick-item ${on?'on':''}" data-pick-visit-member="${esc(m.id)}">
+      <div class="avatar" style="width:32px;height:32px;flex:0 0 32px;font-size:14px;border-radius:9px">${esc(initials(m.name))}</div>
+      <div class="item-content"><div class="name">${esc(m.name)}</div><div class="desc">${n?`已探访 ${n} 次`:esc(categoryNames(m))}</div></div>
+      <span style="font-size:12px;font-weight:700;color:${on?'var(--green)':'var(--muted)'}">${on?'已选':'选择'}</span>
+    </button>`;
+  }).join('');
+}
+function updatePickedMemberHint(){
+  const box=$('#visit-member-picked');
+  const input=$('#visit-member-id');
+  if(!box||!input)return;
+  const m=state.members.find(x=>x.id===input.value);
+  if(m){
+    box.style.display='block';
+    box.innerHTML=`已选择：<b>${esc(m.name)}</b> <button type="button" class="text-btn" data-action="clear-visit-member" style="padding:0 4px;font-size:12px">更换</button>`;
+  }else{
+    box.style.display='none';
+    box.innerHTML='';
+  }
+}
+
 function visitForm(memberId='',visitId=''){
   const v=state.visits.find(x=>x.id===visitId)||{};
+  const selectedId=v.memberId||memberId||'';
   openModal(`
     <div class="sheet-head"><h2>${visitId?'编辑探访':'记录探访'}</h2><button type="button" class="close" data-action="close">×</button></div>
     ${activeMembers().length?`
     <form data-form="visit" data-id="${esc(visitId)}">
-      <div class="field-grid">
-        <label class="field">日期<input name="date" type="date" required value="${esc(v.date||today())}"></label>
-        <label class="field">被探访成员<select name="memberId" required><option value="">选择成员</option>${activeMembers().map(m=>`<option value="${esc(m.id)}" ${(v.memberId||memberId)===m.id?'selected':''}>${esc(m.name)}</option>`).join('')}</select></label>
+      <label class="field">日期<input name="date" type="date" required value="${esc(v.date||today())}"></label>
+      <label class="field">被探访成员</label>
+      <input type="hidden" name="memberId" id="visit-member-id" value="${esc(selectedId)}">
+      <div id="visit-member-picked" class="notice" style="margin-bottom:8px;display:none"></div>
+      <input id="visit-member-search" placeholder="搜索成员…" autocomplete="off">
+      <div id="visit-member-list" class="pick-list" style="max-height:200px;margin-top:6px"></div>
+      <label class="field" style="margin-top:14px">探访同工<input name="visitor" value="${esc(v.visitor||'')}" placeholder="可直接输入，或从成员选择"></label>
+      <div class="between" style="margin-bottom:10px">
+        <button type="button" class="btn plain mini" data-action="toggle-visitor-picker">👥 从成员选择</button>
+        <span class="muted">可多选，重复会提示</span>
       </div>
-      <label class="field">探访同工<input name="visitor" value="${esc(v.visitor||'')}" placeholder="谁去探访？"></label>
-      <label class="field">探访日志<textarea id="visit-log" name="log" placeholder="情况、代祷事项、后续行动…">${esc(v.log||'')}</textarea></label>
-      <button type="button" class="btn plain mini" data-action="numbering">插入 1. 2. 3.</button>
+      <div id="visitor-picker" style="display:none">
+        <input id="visitor-search" placeholder="搜索成员…" autocomplete="off">
+        <div id="visitor-list" class="pick-list"></div>
+      </div>
+      <label class="field" style="margin-top:12px">探访日志<textarea id="visit-log" name="log" placeholder="情况、代祷事项、后续行动…">${esc(v.log||'')}</textarea></label>
       <label class="check-chip" style="margin:13px 0"><input type="checkbox" name="star" ${v.star?'checked':''}>★ 重点跟进</label>
       <button type="submit" class="btn primary block">保存探访</button>
     </form>`:`<div class="empty"><p>请先添加成员</p><button type="button" class="btn primary" data-action="new-member">添加成员</button></div>`}
   `);
+  const list=$('#visit-member-list');
+  if(list)list.innerHTML=visitMemberListHTML('',selectedId);
+  updatePickedMemberHint();
 }
 function categoryForm(id=''){
   const c=state.categories.find(x=>x.id===id);
@@ -710,24 +1316,59 @@ function categoryForm(id=''){
     <div class="sheet-head"><h2>${c?'编辑分类':'新建分类'}</h2><button type="button" class="close" data-action="close">×</button></div>
     <form data-form="category" data-id="${esc(id)}">
       <label class="field">分类名称<input name="name" required maxlength="40" value="${esc(c?.name||'')}" placeholder="输入分类名称"></label>
+      <label class="field">分类探访目标（次/学期，留空跟随默认）<input name="target" type="number" min="0" max="999" value="${c?.target==null?'':esc(c.target)}"></label>
       <button type="submit" class="btn primary block">保存分类</button>
     </form>
   `);
+}
+function ringSVG(rate,size=64){
+  const r=(size-10)/2, c=2*Math.PI*r;
+  const v=rate==null?0:Math.max(0,Math.min(100,rate));
+  const off=c*(1-v/100);
+  return `<svg class="ring" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}">
+    <circle cx="${size/2}" cy="${size/2}" r="${r}" fill="none" stroke="#ecefe9" stroke-width="7"/>
+    <circle cx="${size/2}" cy="${size/2}" r="${r}" fill="none" stroke="#285c46" stroke-width="7"
+      stroke-linecap="round" stroke-dasharray="${c}" stroke-dashoffset="${off}"
+      transform="rotate(-90 ${size/2} ${size/2})"/>
+    <text x="50%" y="50%" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="700" fill="#285c46">${rate==null?'—':rate.toFixed(1)+'%'}</text>
+  </svg>`;
 }
 function profile(id){
   const m=state.members.find(x=>x.id===id);
   if(!m)return;
   const vs=memberVisits(m.id).sort((a,b)=>b.date.localeCompare(a.date));
-  const a=memberAttendance(m.id),t=targetFor(m);
-  openModal(`
+  const a=memberAttendance(m.id),ti=targetInfo(m),t=ti.value;
+  const trend=memberTrend(m.id,12);
+  const done=Math.min(t,vs.length);
+  const remain=t>0?Math.max(0,t-vs.length):0;
+  const over=t>0&&vs.length>t?vs.length-t:0;
+  return openModal(`
     <div class="sheet-head"><h2>成员档案</h2><button type="button" class="close" data-action="close">×</button></div>
     <div class="card"><div class="row"><div class="avatar" style="width:50px;height:50px">${esc(initials(m.name))}</div><div class="flex1"><div style="font-size:20px;font-weight:800">${esc(m.name)}</div><div class="muted">${esc(categoryNames(m))}</div></div><button type="button" class="btn soft mini" data-action="edit-member" data-id="${esc(m.id)}">编辑</button></div>
-      <hr><div class="grid"><div><div class="muted">探访完成</div><b style="font-size:22px">${Math.min(t,vs.length)}/${t}</b></div><div><div class="muted">出勤率</div><b style="font-size:22px">${a.p+a.a?Math.round(a.rate)+'%':'—'}</b></div></div>
+      <hr>
+      <div class="grid">
+        <div><div class="muted">探访完成</div><b style="font-size:22px">${done}/${t}</b><div class="muted" style="font-size:10px">实际 ${vs.length} 次 · ${esc(ti.source)}</div></div>
+        <div style="display:flex;align-items:center;gap:10px">${ringSVG(a.rate)}<div><div class="muted">出勤率</div><div class="muted" style="font-size:10px">出席 ${a.p} · 未出席 ${a.a}</div></div></div>
+      </div>
     </div>
-    <div class="card"><h3>基本资料</h3>${[['电话',m.phone],['学校',m.school],['班级',m.className],['寝室',m.dorm],['受洗',m.baptized==='yes'?'已受洗':m.baptized==='no'?'未受洗':'未记录'],['恩赐',m.gifts],['备注',m.note]].filter(x=>x[1]).map(x=>`<div class="item"><span class="muted" style="width:55px">${esc(x[0])}</span><span class="flex1">${esc(x[1])}</span></div>`).join('')||'<div class="muted">暂无其他资料</div>'}</div>
+    <div class="card"><h3>近期出勤趋势</h3>
+      ${trend.length?`<div class="chart-bars" style="height:120px;padding-top:20px">
+        ${trend.map(w=>{
+          const h=w.value==null?2:w.value;
+          return `<div class="bar-col"><div class="bar ${w.value==null?'empty':''}" style="height:${Math.max(2,h)}%"><span class="bar-val">${w.value==null?'—':w.value}</span></div><div class="bar-x">${esc(w.label)}</div></div>`;
+        }).join('')}
+      </div><div class="legend"><span><i style="background:#285c46"></i>100=出席</span><span><i style="background:#dfe5de"></i>无记录</span></div>`
+      :'<div class="muted">暂无出勤记录</div>'}
+    </div>
+    <div class="card"><h3>基本资料</h3>${[['电话',m.phone],['学校',m.school],['班级',m.className],['寝室',m.dorm],['受洗',m.baptized==='yes'?'已受洗':m.baptized==='no'?'未受洗':'未记录'],['恩赐',m.gifts],['备注',m.note]].filter(x=>x[1]).map(x=>`<div class="item"><span class="muted" style="width:55px">${esc(x[0])}</span><span class="flex1">${fold(x[1])}</span></div>`).join('')||'<div class="muted">暂无其他资料</div>'}</div>
     <div class="head"><h3>探访记录</h3><button type="button" class="btn soft mini" data-action="new-visit" data-member="${esc(m.id)}">＋ 探访</button></div>
-    <div class="card list">${vs.length?vs.slice(0,8).map(v=>`<div class="item"><div class="avatar">${v.star?'★':'♡'}</div><div class="item-content"><div class="name">${esc(dateText(v.date))} ${v.star?'★':''}</div><div class="desc">${esc(v.visitor||'')}</div><div class="desc">${esc(v.log||'')}</div></div></div>`).join(''):'<div class="empty"><p>尚无探访记录</p></div>'}</div>
-    <div class="card"><h3>出勤统计</h3><div class="muted">出席 ${a.p} 次 · 缺席 ${a.a} 次 · 请假 ${a.l} 次</div></div>
+    <div class="card" style="margin-bottom:10px">
+      <div class="between"><span class="muted">探访目标进度</span><b>${done}/${t}</b></div>
+      <div class="progress" style="margin:8px 0 4px"><div style="width:${t?done/t*100:0}%"></div></div>
+      <div class="muted" style="font-size:11px">${t===0?'未设置目标':(over>0?`已达标，超出 ${over} 次`:(remain>0?`还差 ${remain} 次`:'已达标'))}</div>
+    </div>
+    <div class="card list">${vs.length?vs.slice(0,8).map(v=>`<div class="item"><div class="avatar">${v.star?'★':'♡'}</div><div class="item-content"><div class="name">${esc(dateText(v.date))} ${v.star?'★':''}</div><div class="desc">${esc(v.visitor||'')}</div><div class="desc">${fold(v.log)}</div></div></div>`).join(''):'<div class="empty"><p>尚无探访记录</p></div>'}</div>
+    <div class="card"><h3>出勤统计</h3><div class="muted">出席 ${a.p} 次 · 未出席 ${a.a} 次 · 未标记 ${a.un} 次</div><div class="progress"><div style="width:${a.rate==null?0:a.rate}%"></div></div></div>
     <div class="row">
       <button type="button" class="btn plain flex1" data-action="${m.archived?'restore-member':'archive-member'}" data-id="${esc(m.id)}">${m.archived?'恢复成员':'归档成员'}</button>
       <button type="button" class="btn danger flex1" data-action="delete-member" data-id="${esc(m.id)}">彻底删除</button>
@@ -736,15 +1377,92 @@ function profile(id){
   `);
 }
 
-/* 按钮事件：统一委托，不让普通点击关闭弹窗 */
+/* ---------- 事件 ---------- */
 document.addEventListener('click',e=>{
+  const pv=e.target.closest('[data-pick-visitor]');
+  if(pv){
+    const name=pv.dataset.pickVisitor;
+    const input=document.querySelector('form[data-form="visit"] [name="visitor"]');
+    if(input){
+      const cur=input.value.split(/[、,，]/).map(s=>s.trim()).filter(Boolean);
+      if(cur.includes(name)){say('该同工已在列表中')}
+      else{cur.push(name);input.value=cur.join('、');say('已加入 '+name)}
+    }
+    return;
+  }
+  const pm=e.target.closest('[data-pick-member]');
+  if(pm){
+    if(pm.disabled)return;
+    const id=pm.dataset.pickMember;
+    if(selectedPick.has(id))selectedPick.delete(id);
+    else selectedPick.add(id);
+    const list=$('#pick-list');
+    if(list)list.innerHTML=pickListHTML(document.querySelector('[data-action="save-pick"]')?.dataset.id||'', $('#pick-search')?.value||'');
+    return;
+  }
+  const pvm=e.target.closest('[data-pick-visit-member]');
+  if(pvm){
+    const id=pvm.dataset.pickVisitMember;
+    const input=$('#visit-member-id');
+    if(input)input.value=id;
+    const list=$('#visit-member-list');
+    if(list)list.innerHTML=visitMemberListHTML($('#visit-member-search')?.value||'',id);
+    updatePickedMemberHint();
+    return;
+  }
+
   const b=e.target.closest('[data-action]');
   if(!b)return;
   const a=b.dataset.action,id=b.dataset.id||'';
 
-  if(a==='nav'){tab=b.dataset.tab;closeModal();render();window.scrollTo(0,0);return}
-  if(a==='settings'){tab='settings';closeModal();render();window.scrollTo(0,0);return}
+  if(a==='toggle-text'){b.classList.toggle('open');e.preventDefault();return}
+  if(a==='nav'){tab=b.dataset.tab;resetExpanded();closeModal();render();window.scrollTo(0,0);return}
+  if(a==='settings'){tab='settings';resetExpanded();closeModal();render();window.scrollTo(0,0);return}
   if(a==='close'){closeModal();return}
+  if(a==='dismiss-backup'){state.settings.dismissBackupReminder=today();save();render();return}
+  if(a==='att-view'){attView=b.dataset.view;render();return}
+  if(a==='analysis-quick'){
+    const r=b.dataset.range;
+    if(r==='week'){const w=currentWeekRange();analysisRange={start:w.start,end:w.end}}
+    else if(r==='month'){const t=dateObj(today());const s=iso(new Date(t.getFullYear(),t.getMonth(),1));const en=iso(new Date(t.getFullYear(),t.getMonth()+1,0));analysisRange={start:s,end:en}}
+    else{analysisRange={start:semester().start,end:semester().end}}
+    render();return;
+  }
+  if(a==='toggle-sort-dir'){memberSortDir=memberSortDir==='desc'?'asc':'desc';render();return}
+  if(a==='toggle-stars'){starsExpanded=!starsExpanded;render();return}
+  if(a==='toggle-visits'){visitsExpanded=!visitsExpanded;render();return}
+  if(a==='toggle-per-rate'){perRateExpanded=!perRateExpanded;render();return}
+  if(a==='expand-group'){expandedGroups.add(id);render();return}
+  if(a==='collapse-group'){expandedGroups.delete(id);render();return}
+  if(a==='manage-categories'){pickFromManage=false;categoryManage();return}
+  if(a==='pick-members'){pickFromManage=true;pickMembersForCategory(id);return}
+  if(a==='pick-members-from-page'){pickFromManage=false;pickMembersForCategory(id);return}
+  if(a==='clear-visit-member'){
+    const input=$('#visit-member-id');
+    if(input)input.value='';
+    const list=$('#visit-member-list');
+    if(list)list.innerHTML=visitMemberListHTML($('#visit-member-search')?.value||'','');
+    updatePickedMemberHint();
+    return;
+  }
+  if(a==='save-pick'){
+    const c=state.categories.find(x=>x.id===id);
+    if(!c){say('分类不存在');return}
+    let added=0,skipped=0;
+    [...selectedPick].forEach(mid=>{
+      const m=state.members.find(x=>x.id===mid);
+      if(!m)return;
+      if((m.categoryIds||[]).includes(id)){skipped++;return}
+      m.categoryIds=[...(m.categoryIds||[]),id];
+      added++;
+    });
+    save();
+    say(`已加入 ${added} 位${skipped?`，跳过 ${skipped} 位已在分类中的成员`:''}`);
+    if(!added&&!skipped)say('没有选择成员');
+    if(pickFromManage){pickFromManage=false;categoryManage();}
+    else{closeModal();render();}
+    return;
+  }
   if(a==='new-member'){memberForm();return}
   if(a==='edit-member'){memberForm(id);return}
   if(a==='profile'){profile(id);return}
@@ -760,9 +1478,12 @@ document.addEventListener('click',e=>{
     if(target)target.scrollIntoView({behavior:'smooth',block:'center'});
     return;
   }
-  if(a==='numbering'){
-    const t=$('#visit-log');
-    if(t){const s=t.selectionStart,e=t.selectionEnd;t.setRangeText('1. \n2. \n3. ',s,e,'end');t.focus()}
+  if(a==='toggle-visitor-picker'){
+    const box=$('#visitor-picker');
+    if(!box)return;
+    const show=box.style.display==='none';
+    box.style.display=show?'block':'none';
+    if(show){const list=$('#visitor-list');if(list)list.innerHTML=visitorPickerHTML('')}
     return;
   }
   if(a==='star-visit'){
@@ -772,7 +1493,12 @@ document.addEventListener('click',e=>{
   }
   if(a==='attendance-status'){
     const mt=state.meetings.find(x=>x.id===b.dataset.meeting);
-    if(mt){mt.records=mt.records||{};mt.records[b.dataset.member]=b.dataset.status;save();render()}
+    if(mt){
+      mt.records=mt.records||{};
+      if(b.dataset.status)mt.records[b.dataset.member]=b.dataset.status;
+      else delete mt.records[b.dataset.member];
+      save();render();
+    }
     return;
   }
   if(a==='delete-meeting'){
@@ -804,27 +1530,26 @@ document.addEventListener('click',e=>{
   }
   if(a==='delete-category'){
     const c=state.categories.find(x=>x.id===id);
-    if(!c||id==='uncategorized')return;
-    if(confirm(`删除分类「${c.name}」？成员档案和历史记录会保留。`)){
+    if(!c||c.virtual)return;
+    if(confirm(`删除分类「${c.name}」？使用该分类目标的成员将回落到学期默认目标。成员档案和历史记录会保留。`)){
       state.categories=state.categories.filter(x=>x.id!==id);
       state.members.forEach(m=>{
         m.categoryIds=(m.categoryIds||[]).filter(x=>x!==id);
-        if(!m.categoryIds.length)m.categoryIds=['uncategorized'];
+        if(m.targetCategoryId===id)m.targetCategoryId=null;
       });
       if(categoryFilter===id)categoryFilter='all';
-      save();render();say('分类已删除');
+      save();
+      if($('#modal').classList.contains('open'))categoryManage();
+      else render();
+      say('分类已删除');
     }
     return;
   }
-  if(a==='export'){
-    exportBackup();return;
-  }
-  if(a==='import'){
-    importBackup();return;
-  }
+  if(a==='export'){exportBackup();return}
+  if(a==='import'){importBackup();return}
+  if(a==='start-tour'){closeModal();startTour();return}
 });
 
-/* 表单事件 */
 document.addEventListener('submit',e=>{
   const f=e.target.closest('form[data-form]');
   if(!f)return;
@@ -849,11 +1574,13 @@ document.addEventListener('submit',e=>{
     const old=state.members.find(m=>m.id===id);
     const name=(d.name||'').trim();
     if(!name){say('请填写姓名');return}
-    let categoryIds=fd.getAll('categoryIds');
-    if(!categoryIds.length)categoryIds=['uncategorized'];
+    const dup=state.members.some(x=>x.id!==id&&!x.archived&&x.name===name);
+    if(dup&&!confirm(`已存在同名成员「${name}」，仍要保存吗？`))return;
+    let categoryIds=fd.getAll('categoryIds').filter(cid=>state.categories.some(c=>c.id===cid&&!c.virtual));
     const m={
       ...(old||{}),id:id||uid(),name,categoryIds,
       targetOverride:d.targetOverride===''?null:Math.max(0,Number(d.targetOverride)),
+      targetCategoryId:d.targetCategoryId||null,
       phone:(d.phone||'').trim(),school:(d.school||'').trim(),
       className:(d.className||'').trim(),dorm:(d.dorm||'').trim(),
       baptized:d.baptized||'unknown',gifts:(d.gifts||'').trim(),
@@ -883,10 +1610,15 @@ document.addEventListener('submit',e=>{
     const name=(d.name||'').trim();
     if(!name){say('请填写分类名称');return}
     const id=f.dataset.id;
+    const target=d.target===''?null:Math.max(0,Number(d.target)||0);
     const c=state.categories.find(x=>x.id===id);
-    if(c)c.name=name;
-    else state.categories.push({id:uid(),name});
-    save();closeModal();render();say('分类已保存');return;
+    if(c){c.name=name;c.target=target}
+    else state.categories.push({id:uid(),name,target,virtual:false});
+    save();
+    if($('#modal').classList.contains('open'))categoryManage();
+    else render();
+    say('分类已保存');
+    return;
   }
 
   if(f.dataset.form==='save-week'){
@@ -903,52 +1635,101 @@ document.addEventListener('submit',e=>{
   }
 });
 
-/* 日期、出勤场次和搜索 */
 document.addEventListener('change',e=>{
   const el=e.target;
-  if(el.dataset.field==='active-week'){
-    state.settings.activeAttendanceWeek=el.value;save();render();return;
-  }
+  if(el.dataset.field==='active-week'){state.settings.activeAttendanceWeek=el.value;save();render();return}
   if(el.dataset.field==='meeting-date'){
     const m=state.meetings.find(x=>x.id===el.dataset.id);
     if(m&&el.value){m.date=el.value;save();render();say('日期已更新')}
     return;
   }
-  if(el.dataset.field==='meeting-label'){
-    const m=state.meetings.find(x=>x.id===el.dataset.id);
-    if(m){m.label=el.value.trim()||'团契聚会';save();say('名称已保存')}
+  if(el.dataset.field==='cat-target'){
+    const c=state.categories.find(x=>x.id===el.dataset.id);
+    if(c){
+      c.target=el.value===''?null:Math.max(0,Number(el.value)||0);
+      save();render();say('分类目标已保存');
+    }
+    return;
+  }
+  if(el.dataset.field==='analysis-start'){analysisRange.start=el.value;render();return}
+  if(el.dataset.field==='analysis-end'){analysisRange.end=el.value;render();return}
+  if(el.dataset.field==='member-sort'){
+    memberSort=el.value;
+    const box=document.getElementById('member-list');
+    if(box)box.innerHTML=memberListHTML();
+    return;
   }
 });
 document.addEventListener('input',e=>{
   if(e.target.dataset.field==='search'){
+    if(e.isComposing)return;
     query=e.target.value;
-    const y=window.scrollY;
-    render();
-    const el=$('[data-field="search"]');
-    if(el){el.focus();el.setSelectionRange(query.length,query.length)}
-    window.scrollTo(0,y);
+    const box=document.getElementById('member-list');
+    if(box)box.innerHTML=memberListHTML();
+    return;
+  }
+  if(e.target.id==='pick-search'){
+    if(e.isComposing)return;
+    const list=$('#pick-list');
+    const catId=document.querySelector('[data-action="save-pick"]')?.dataset.id||'';
+    if(list)list.innerHTML=pickListHTML(catId,e.target.value);
+    return;
+  }
+  if(e.target.id==='visitor-search'){
+    if(e.isComposing)return;
+    const list=$('#visitor-list');
+    if(list)list.innerHTML=visitorPickerHTML(e.target.value);
+    return;
+  }
+  if(e.target.id==='visit-member-search'){
+    if(e.isComposing)return;
+    const list=$('#visit-member-list');
+    if(list)list.innerHTML=visitMemberListHTML(e.target.value, $('#visit-member-id')?.value||'');
+    return;
+  }
+});
+document.addEventListener('compositionend',e=>{
+  if(e.target.dataset.field==='search'){
+    query=e.target.value;
+    const box=document.getElementById('member-list');
+    if(box)box.innerHTML=memberListHTML();
+  }else if(e.target.id==='pick-search'){
+    const list=$('#pick-list');
+    const catId=document.querySelector('[data-action="save-pick"]')?.dataset.id||'';
+    if(list)list.innerHTML=pickListHTML(catId,e.target.value);
+  }else if(e.target.id==='visitor-search'){
+    const list=$('#visitor-list');
+    if(list)list.innerHTML=visitorPickerHTML(e.target.value);
+  }else if(e.target.id==='visit-member-search'){
+    const list=$('#visit-member-list');
+    if(list)list.innerHTML=visitMemberListHTML(e.target.value, $('#visit-member-id')?.value||'');
   }
 });
 
-/* 备份码：可跨设备迁移，不等于加密 */
 async function exportBackup(){
   try{
+    state.settings.lastBackupAt=today();
+    save();
     const bytes=new TextEncoder().encode(JSON.stringify(state));
     let bin='';
     for(let i=0;i<bytes.length;i+=0x8000)bin+=String.fromCharCode(...bytes.subarray(i,i+0x8000));
-    const code='TXCARE2.'+btoa(bin);
+    const code='TXCARE3.'+btoa(bin);
     const area=$('#backup');
     if(area){area.value=code;area.focus();area.select()}
-    try{await navigator.clipboard.writeText(code);say('备份码已复制')}
+    try{await navigator.clipboard.writeText(code);say('备份码已复制，请妥善保存')}
     catch{say('备份码已生成，请长按文本复制')}
+    render();
   }catch{say('生成备份码失败')}
 }
 function importBackup(){
   const code=($('#backup')?.value||'').trim();
-  if(!code.startsWith('TXCARE2.')){say('备份码格式不正确');return}
+  let body='';
+  if(code.startsWith('TXCARE3.'))body=code.slice(8);
+  else if(code.startsWith('TXCARE2.'))body=code.slice(8);
+  else{say('备份码格式不正确');return}
   if(!confirm('恢复将覆盖当前设备的全部资料。建议先导出当前备份，确定继续吗？'))return;
   try{
-    const bin=atob(code.slice(8));
+    const bin=atob(body);
     const bytes=Uint8Array.from(bin,c=>c.charCodeAt(0));
     const parsed=JSON.parse(new TextDecoder().decode(bytes));
     if(!parsed||!Array.isArray(parsed.members)||!Array.isArray(parsed.visits)||!Array.isArray(parsed.categories))throw Error();
@@ -957,8 +1738,107 @@ function importBackup(){
   }catch{say('恢复失败，请检查备份码是否完整')}
 }
 
-/* 启动 */
+/* ---------- 新手教程 ---------- */
+const TOUR=[
+  {tab:'settings',sel:'[data-tour="semester"]',title:'① 设置学期',text:'填写学期名称与起止日期，设定每人默认探访目标，然后点下方「保存设置」。这是所有统计的基础。'},
+  {tab:'settings',sel:'[data-tour="categories"]',title:'② 分类与分类目标',text:'每个分类可以设置自己的探访目标。成员属于多个分类且目标不同时，编辑成员时会让你选择以哪个分类为准。'},
+  {tab:'members',sel:'[data-tour="add-member"]',title:'③ 添加成员',text:'点击这里添加成员，可多选分类。没有加入任何分类的成员会自动归入「未分类」。'},
+  {tab:'members',sel:'[data-tour="member-tools"]',title:'④ 管理分类',text:'「⚙ 管理分类」可以批量选择已有成员加入某个分类；已在该分类的成员会显示「已加入」，不会重复添加。'},
+  {tab:'visits',sel:'[data-tour="visit-pulse"]',title:'⑤ 本周 / 本月目标提醒',text:'这里实时显示本周和本月探访是否达标。未达标会变红，并提示还差几次；达标变绿。'},
+  {tab:'visits',sel:'[data-tour="new-visit"]',title:'⑥ 记录探访',text:'点击「＋ 记录」登记探访。成员和同工都支持搜索，最近高频的会排在前面。日志超过 20 字会自动折叠。'},
+  {tab:'attendance',view:'register',sel:'[data-tour="att-week"]',title:'⑦ 选择周次',text:'每周以周日为起点自动生成一场。在这里切换要登记的那一周。'},
+  {tab:'attendance',view:'register',sel:'[data-tour="att-list"]',title:'⑧ 登记出勤',text:'每位成员只有「出席 / 未出席」两个有效状态；「未标记」不计入出勤率分母。'},
+  {tab:'attendance',view:'analysis',sel:'[data-tour="att-view"]',title:'⑨ 区间出勤分析',text:'切换到「区间分析」，自选起止日期或点本周/本月/本学期，查看趋势、每人出勤率与按分类的明细。'},
+  {tab:'weekly',sel:'[data-tour="weekly"]',title:'⑩ 每周日志',text:'按月份与周次折叠，探访与聚会记录自动汇总。当前月份会显示「本周」标记，点击展开填写。'},
+  {tab:'settings',sel:'[data-tour="backup"]',title:'⑪ 重要 · 备份',text:'资料完全保存在本机浏览器，不会上传服务器。清理浏览器数据或换设备会导致资料永久丢失且无法找回。请定期「生成并复制备份码」。'}
+];
+let tourIndex=-1,tourActive=false;
+function startTour(){
+  tourIndex=0;tourActive=true;
+  document.body.classList.add('touring');
+  renderTourStep();
+}
+function endTour(done){
+  tourActive=false;
+  document.body.classList.remove('touring');
+  document.querySelectorAll('.tour-hl').forEach(el=>el.classList.remove('tour-hl'));
+  $('#tour-bubble').style.display='none';
+  if(done){state.settings.tutorialDone=true;save()}
+}
+function clearTourHL(){document.querySelectorAll('.tour-hl').forEach(el=>el.classList.remove('tour-hl'))}
+function renderTourStep(){
+  clearTourHL();
+  if(!tourActive)return;
+  if(tourIndex<0||tourIndex>=TOUR.length){endTour(true);say('教程完成');return}
+  const step=TOUR[tourIndex];
+  let needRender=false;
+  if(tab!==step.tab){tab=step.tab;needRender=true}
+  if(step.tab==='attendance'&&step.view&&attView!==step.view){attView=step.view;needRender=true}
+  if(needRender)render();
+  requestAnimationFrame(()=>{
+    const el=document.querySelector(step.sel);
+    const bubble=$('#tour-bubble');
+    bubble.style.display='block';
+    if(!el){
+      bubble.style.top='auto';
+      bubble.style.bottom='calc(96px + env(safe-area-inset-bottom))';
+      bubble.innerHTML=`
+        <h3>${esc(step.title)}</h3>
+        <p>这一步需要先完成前面的设置或添加数据。可以先跳过，完成后再从设置页重新观看教程。</p>
+        <div class="tour-actions">
+          <span class="tour-step">${tourIndex+1} / ${TOUR.length}</span>
+          <div class="row">
+            <button type="button" class="btn plain mini" data-tour-nav="skip">跳过</button>
+            <button type="button" class="btn primary mini" data-tour-nav="next">${tourIndex===TOUR.length-1?'完成':'下一步'}</button>
+          </div>
+        </div>`;
+      return;
+    }
+    el.scrollIntoView({behavior:'auto',block:'center'});
+    el.classList.add('tour-hl');
+    const rect=el.getBoundingClientRect();
+    if(rect.top>window.innerHeight*0.55){
+      bubble.style.bottom='auto';
+      bubble.style.top='calc(12px + env(safe-area-inset-top))';
+    }else{
+      bubble.style.top='auto';
+      bubble.style.bottom='calc(96px + env(safe-area-inset-bottom))';
+    }
+    bubble.innerHTML=`
+      <h3>${esc(step.title)}</h3>
+      <p>${esc(step.text)}</p>
+      <div class="tour-actions">
+        <span class="tour-step">${tourIndex+1} / ${TOUR.length}</span>
+        <div class="row">
+          <button type="button" class="btn plain mini" data-tour-nav="skip">跳过</button>
+          ${tourIndex>0?'<button type="button" class="btn plain mini" data-tour-nav="prev">上一步</button>':''}
+          <button type="button" class="btn primary mini" data-tour-nav="next">${tourIndex===TOUR.length-1?'完成':'下一步'}</button>
+        </div>
+      </div>`;
+  });
+}
+document.addEventListener('click',e=>{
+  const b=e.target.closest('[data-tour-nav]');
+  if(!b)return;
+  e.stopPropagation();
+  const n=b.dataset.tourNav;
+  if(n==='skip'){endTour(true);return}
+  if(n==='prev'){tourIndex=Math.max(0,tourIndex-1);renderTourStep();return}
+  if(n==='next'){
+    if(tourIndex>=TOUR.length-1){endTour(true);say('教程完成');return}
+    tourIndex++;renderTourStep();return;
+  }
+});
+function maybeStartTour(){
+  if(tourActive)return;
+  if(state.settings.tutorialDone)return;
+  if(!state.settings.configured&&tab!=='settings')return;
+  setTimeout(()=>{if(!tourActive&&!state.settings.tutorialDone)startTour()},600);
+}
+
+/* ---------- 启动 ---------- */
 render();
+if(migrated)say('已从旧版本升级，建议先导出备份码');
 setInterval(()=>{$('#today').textContent=shortDate(today())},60000);
 </script>
 </body>
